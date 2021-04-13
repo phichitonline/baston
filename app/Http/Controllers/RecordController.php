@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Buy;
+use App\Models\Record;
 use Illuminate\Http\Request;
 
-class BuyController extends Controller
+class RecordController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Record $record)
     {
-        return view('buy.index', [
-            'pagename' => "บันทึกขออนุมัติ",
+        return view('record.index', [
+            'pagename' => "บันทึกขอซื้อ/จ้าง",
+            'record' => $record->all(),
         ]);
     }
 
@@ -26,9 +27,7 @@ class BuyController extends Controller
      */
     public function create()
     {
-        return view('buy.create', [
-            'pagename' => "บันทึกขออนุมัติ",
-        ]);
+        //
     }
 
     /**
@@ -45,10 +44,10 @@ class BuyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Buy  $buy
+     * @param  \App\Models\Record  $record
      * @return \Illuminate\Http\Response
      */
-    public function show(Buy $buy)
+    public function show(Record $record)
     {
         //
     }
@@ -56,10 +55,10 @@ class BuyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Buy  $buy
+     * @param  \App\Models\Record  $record
      * @return \Illuminate\Http\Response
      */
-    public function edit(Buy $buy)
+    public function edit(Record $record)
     {
         //
     }
@@ -68,10 +67,10 @@ class BuyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Buy  $buy
+     * @param  \App\Models\Record  $record
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Buy $buy)
+    public function update(Request $request, Record $record)
     {
         //
     }
@@ -79,11 +78,13 @@ class BuyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Buy  $buy
+     * @param  \App\Models\Record  $record
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Buy $buy)
+    public function destroy(Record $record)
     {
-        //
+        $record->delete();
+        return redirect()->route('record.index')
+                         ->with('success', 'ลบข้อมูลเรียบร้อยแล้ว');
     }
 }

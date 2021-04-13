@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Buy;
+use App\Models\Requisition;
 use Illuminate\Http\Request;
 
-class BuyController extends Controller
+class RequisitionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Requisition $requisition)
     {
-        return view('buy.index', [
-            'pagename' => "บันทึกขออนุมัติ",
+        return view('requisition.index', [
+            'pagename' => "ใบเบิก",
+            'requisition' => $requisition->all(),
         ]);
     }
 
@@ -26,9 +27,7 @@ class BuyController extends Controller
      */
     public function create()
     {
-        return view('buy.create', [
-            'pagename' => "บันทึกขออนุมัติ",
-        ]);
+        //
     }
 
     /**
@@ -45,10 +44,10 @@ class BuyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Buy  $buy
+     * @param  \App\Models\Requisition  $requisition
      * @return \Illuminate\Http\Response
      */
-    public function show(Buy $buy)
+    public function show(Requisition $requisition)
     {
         //
     }
@@ -56,10 +55,10 @@ class BuyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Buy  $buy
+     * @param  \App\Models\Requisition  $requisition
      * @return \Illuminate\Http\Response
      */
-    public function edit(Buy $buy)
+    public function edit(Requisition $requisition)
     {
         //
     }
@@ -68,10 +67,10 @@ class BuyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Buy  $buy
+     * @param  \App\Models\Requisition  $requisition
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Buy $buy)
+    public function update(Request $request, Requisition $requisition)
     {
         //
     }
@@ -79,11 +78,13 @@ class BuyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Buy  $buy
+     * @param  \App\Models\Requisition  $requisition
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Buy $buy)
+    public function destroy(Requisition $requisition)
     {
-        //
+        $requisition->delete();
+        return redirect()->route('requisition.index')
+                         ->with('success', 'ลบข้อมูลเรียบร้อยแล้ว');
     }
 }

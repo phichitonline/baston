@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Buy;
 use Illuminate\Http\Request;
 
-class BuyController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +13,7 @@ class BuyController extends Controller
      */
     public function index()
     {
-        return view('buy.index', [
-            'pagename' => "บันทึกขออนุมัติ",
-        ]);
+        return view('home.dashboard');
     }
 
     /**
@@ -26,9 +23,7 @@ class BuyController extends Controller
      */
     public function create()
     {
-        return view('buy.create', [
-            'pagename' => "บันทึกขออนุมัติ",
-        ]);
+        //
     }
 
     /**
@@ -45,10 +40,10 @@ class BuyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Buy  $buy
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Buy $buy)
+    public function show($id)
     {
         //
     }
@@ -56,10 +51,10 @@ class BuyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Buy  $buy
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Buy $buy)
+    public function edit($id)
     {
         //
     }
@@ -68,10 +63,10 @@ class BuyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Buy  $buy
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Buy $buy)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -79,10 +74,10 @@ class BuyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Buy  $buy
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Buy $buy)
+    public function destroy($id)
     {
         //
     }

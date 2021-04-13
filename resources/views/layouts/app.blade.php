@@ -572,11 +572,11 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" data-menu-target="#apps">
+                            <a href="#" data-menu-target="#home">
                                 <span class="menu-tab-icon">
                                     <i data-feather="layers"></i>
                                 </span>
-                                <span>คำขอ</span>
+                                <span>Home</span>
                             </a>
                         </li>
                         <li>
@@ -604,57 +604,71 @@
                     <ul id="dashboards">
                         <li class="navigation-divider">หน้าหลัก</li>
                         <li>
-                            <a @if(!request()->segment(1) || request()->segment(1) == 'ecommerce-dashboard') class="active"
-                               @endif href="{{ route('home') }}">
+                            <a @if(!request()->segment(1) || request()->segment(1) == 'dashboard') class="active"
+                               @endif href="{{ route('dashboard') }}">
                                <span class="nav-link-icon" data-feather="grid"></span>
-                                <span>ภาพรวม</span>
+                                <span>Dashboard</span>
                             </a>
                         </li>
                     </ul>
-                    <ul id="apps">
-                        <li class="navigation-divider">รายการคำขอ</li>
+                    <ul id="home">
+                        <li class="navigation-divider">รายการ</li>
                         <li>
-                            <a @if(request()->segment(1) == 'chat') class="active"
-                               @endif href="{{ route('chat') }}">
+                            <a @if(!request()->segment(1) || request()->segment(1) == 'home') class="active"
+                               @endif href="{{ route('home') }}">
+                               <span class="nav-link-icon" data-feather="grid"></span>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a @if(request()->segment(1) == 'record') class="active"
+                               @endif href="{{ route('record.index') }}">
                                 <span class="nav-link-icon" data-feather="message-circle"></span>
-                                <span>จัดซื้อ</span>
+                                <span>1.บันทึกขอซื้อ/จ้าง</span>
                                 <span class="badge badge-danger">32</span>
                             </a>
                         </li>
                         <li>
-                            <a @if(request()->segment(1) == 'mail') class="active"
-                               @endif href="{{ route('mail') }}">
-                                <span class="nav-link-icon" data-feather="mail"></span>
-                                <span>จัดจ้าง</span>
-                                <span class="badge badge-warning">15</span>
-                            </a>
-                        </li>
-                        <li>
                             <a @if(request()->segment(1) == 'buy') class="active"
-                               @endif href="{{ route('buy') }}">
+                               @endif href="{{ route('buy.index') }}">
                                 <span class="nav-link-icon" data-feather="check-circle"></span>
-                                <span>ทำคำขออนุมัติ</span>
+                                <span>2.บันทึกขออนุมัติ</span>
+                                <span class="badge badge-warning">32</span>
                             </a>
                         </li>
                         <li>
-                            <a @if(request()->segment(1) == 'file-manager') class="active"
-                               @endif href="{{ route('file-manager') }}">
+                            <a @if(request()->segment(1) == 'check') class="active"
+                               @endif href="{{ route('check.index') }}">
+                                <span class="nav-link-icon" data-feather="mail"></span>
+                                <span>3.ตรวจรับ</span>
+                                <span class="badge badge-success">15</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a @if(request()->segment(1) == 'report') class="active"
+                               @endif href="{{ route('report') }}">
                                 <span class="nav-link-icon" data-feather="file"></span>
-                                <span>รอตรวจรับ</span>
+                                <span>4.รายงานผล</span>
+                                <span class="badge badge-primary">32</span>
                             </a>
                         </li>
                         <li>
-                            <a @if(request()->segment(1) == 'calendar') class="active"
-                               @endif href="{{ route('calendar') }}">
+                            <a @if(request()->segment(1) == 'requisition') class="active"
+                               @endif href="{{ route('requisition.index') }}">
                                 <span class="nav-link-icon" data-feather="calendar"></span>
-                                <span>รอจ่ายเงิน</span>
+                                <span>5.ใบเบิก</span>
+                                <span class="badge badge-secondary">32</span>
                             </a>
                         </li>
+                    </ul>
+                    <ul id="components">
+                        <li class="navigation-divider">Components</li>
                         <li>
                             <a @if(request()->segment(1) == 'gallery') class="active"
                                @endif href="{{ route('gallery') }}">
                                 <span class="nav-link-icon" data-feather="image"></span>
-                                <span>จ่ายเงินแล้ว</span>
+                                <span>รายงาน</span>
+                                <span class="badge badge-danger">32</span>
                             </a>
                         </li>
                         <li>
@@ -664,9 +678,6 @@
                                 <span>Invoice</span>
                             </a>
                         </li>
-                    </ul>
-                    <ul id="components">
-                        <li class="navigation-divider">Components</li>
                         <li>
                             <a href="#">
                                 <span class="nav-link-icon">

@@ -13,15 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('buy', 'BuyController@index')->name('buy');
+Route::get('/', 'DashboardController@index')->name('dashboard');
 
+Route::get('/home', 'HomeController@index')->name('home');
 
+Route::resource('buy', BuyController::class);
+Route::resource('record', RecordController::class);
+Route::resource('check', CheckController::class);
+Route::resource('requisition', RequisitionController::class);
 
+Route::get('report', 'ReportController@index')->name('report');
 
 // **********************************************
-Route::get('/', function () {
-    return view('home.dashboard');
-})->name('dashboard');
+// Route::get('/', function () {
+//     return view('home.dashboard');
+// })->name('dashboard');
 
 Route::get('/ecommerce', function () {
     return view('ecommerce-dashboard');
@@ -344,5 +350,3 @@ Route::get('email-template-billing', function () {
 })->name('email-template-billing');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
