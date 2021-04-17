@@ -13,9 +13,14 @@
     <div class="page-header">
         <div class="page-title">
             <h3>{{ $pagename }}</h3>
-            <a href="{{ route('record.create') }}" class="btn btn-outline-primary">
-                <i class="ti-plus mr-2"></i> เพิ่ม
+            <a href="{{ route('director.create') }}" class="btn btn-outline-primary">
+                <i class="ti-plus mr-2"></i> เพิ่มกรรมการ
             </a>
+            {{-- <div>
+                <a href="{{ route('director.create') }}" class="btn btn-outline-success btn-sm btn-floating mr-2" data-toggle="tooltip" title="เพิ่มกรรมการ">
+                    <i class="fa fa-plus"></i>
+                </a>
+            </div> --}}
         </div>
     </div>
 
@@ -30,45 +35,35 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title mb-0">รายการ{{ $pagename }} ที่ยังไม่ได้ดำเนินการ</h6>
+                    <h6 class="card-title mb-0">รายชื่อ{{ $pagename }}</h6>
                 </div>
                 <div class="table-responsive">
                     <table id="example1" class="table table-striped">
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>วันที่</th>
-                            <th>เลขที่บันทึก</th>
-                            <th>เรื่อง</th>
-                            <th class="text-right">งบประมาณ</th>
-                            <th>ผู้ขอ</th>
+                            <th>ชื่อ</th>
+                            <th>ตำแหน่ง</th>
                             <th class="text-center">Action</th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        @foreach ($record as $data)
+                        @foreach ($director as $data)
                         <tr>
                             <td>{{ $data->id }}</td>
-                            <td>{{ thaidate('j F Y',$data->buy_date) }}</td>
-                            <td>{{ $data->buy_number }}</td>
-                            <td>{{ $data->buy_header }}</td>
-                            <td class="text-right">{{ number_format($data->buy_budget,2) }}</td>
-                            <td>{{ $data->buy_request }}</td>
-
+                            <td>{{ $data->name }}</td>
+                            <td>{{ $data->position }}</td>
                             <td class="text-right">
-                                <form action="{{ route('record.destroy', $data->id) }}" method="POST">
+                                <form action="{{ route('director.destroy', $data->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{ route('record.edit', $data->id) }}" class="btn btn-outline-primary btn-sm btn-floating" data-toggle="tooltip" title="แก้ไข">
+                                    <a href="{{ route('director.edit', $data->id) }}" class="btn btn-outline-primary btn-sm btn-floating" data-toggle="tooltip" title="แก้ไข">
                                         <i class="ti-pencil"></i>
                                     </a>
                                     <button class="btn btn-outline-danger btn-sm btn-floating" data-toggle="tooltip" title="ลบ" onClick="return confirm('ยืนยันการลบรายการนี้');">
                                         <i class="ti-trash"></i>
                                     </button>
-                                    <a href="{{ route('buy.create') }}/?did={{ $data->id }}&bid={{ $data->buy_number }}&bheader={{ $data->buy_header }}&brequest={{ $data->buy_request }}&bdate={{ $data->buy_date }}&bbudget={{ $data->buy_budget }}" class="btn btn-outline-success btn-sm btn-floating" data-toggle="tooltip" title="ทำบันทึกขออนุมัติ">
-                                        <i class="ti-book"></i>
-                                    </a>
                                 </form>
                             </td>
 

@@ -6,7 +6,7 @@
     <!-- Form wizard -->
     <link rel="stylesheet" href="{{ url('vendors/form-wizard/jquery.steps.css') }}" type="text/css">
     <!-- Css -->
-    <link rel="stylesheet" href="vendors/datepicker/daterangepicker.css" type="text/css">
+    <link rel="stylesheet" href="{{ url('vendors/datepicker/daterangepicker.css') }}" type="text/css">
     <!-- Prism -->
     <link rel="stylesheet" href="{{ url('vendors/prism/prism.css') }}" type="text/css">
 @endsection
@@ -25,13 +25,14 @@
                                 <div class="form-group row">
                                     <label for="validationCustomUsername" class="col-sm-2 col-form-label text-right">ที่</label>
                                     <div class="col-sm-4">
-                                      <input type="text" class="form-control" id="validationCustomUsername" placeholder="" value="สปสช.5.32/" required>
+                                      <input type="text" class="form-control" id="validationCustomUsername" placeholder="" value="{{ $buy_number }}" disabled>
                                       {{-- <div class="valid-feedback">ถูกต้อง</div> --}}
                                       <div class="invalid-feedback">กรุณาระบุเลขที่อนุมัติ</div>
                                     </div>
                                     <label for="validationCustomDate" class="col-sm-2 col-form-label text-right">วันที่</label>
                                     <div class="col-sm-4">
-                                        <input type="text" name="single-date-picker" class="form-control">
+                                        <input type="text" name="daterangepicker" class="form-control" value="{{ thaidate('j F Y',$buy_date) }}" disabled>
+                                        {{-- <input type="date" class="form-control" value="{{ $buy_date }}"> --}}
                                       <div class="invalid-feedback">กรุณาระบุวันที่</div>
                                     </div>
                                 </div>
@@ -57,7 +58,7 @@
                                 <div class="form-group row">
                                   <label for="inputEmail31" class="col-sm-2 col-form-label"></label>
                                   <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputEmail31" placeholder="" required>
+                                    <input type="text" class="form-control" id="inputEmail31" placeholder="" value="{{ $buy_header }}" disabled>
                                     <div class="invalid-feedback">กรุณาระบุเรื่องที่ขออนุมัติ</div>
                                   </div>
                                 </div>
@@ -81,16 +82,16 @@
                                     <div class="row">
                                       <legend class="col-form-label col-sm-2 pt-0 text-right">ด้วยวิธี</legend>
                                       <div class="col-sm-10">
-                                        <div class="form-check form-check-inline">
+                                        {{-- <div class="form-check form-check-inline">
                                           <input class="form-check-input" type="radio" name="method" id="method1" value="option1">
                                           <label class="form-check-label" for="method1">ตกลงราคา</label>
+                                        </div> --}}
+                                        <div class="form-check form-check-inline">
+                                          <input class="form-check-input" type="radio" name="method" id="method2" value="option2" checked>
+                                          <label class="form-check-label" for="method2">ประกาศเชิญชวนทั่วไป</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                          <input class="form-check-input" type="radio" name="method" id="method2" value="option2">
-                                          <label class="form-check-label" for="method2">สอบราคา</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                          <input class="form-check-input" type="radio" name="method" id="method3" value="option3" checked>
+                                          <input class="form-check-input" type="radio" name="method" id="method3" value="option3">
                                           <label class="form-check-label" for="method3">เฉพาะเจาะจง</label>
                                         </div>
                                       </div>

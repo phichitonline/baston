@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Record;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class RecordController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,9 +30,13 @@ class RecordController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Setting $setting)
     {
-        //
+        $sss = $setting->where('id', '=', '1')->get();
+        return view('record.create', [
+            'pagename' => "บันทึกขอซื้อ/จ้าง",
+            'setting' => $sss,
+        ]);
     }
 
     /**
@@ -38,7 +47,18 @@ class RecordController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'buy_number' => 'required',
+            'buy_date' => 'required',
+            'buy_header' => 'required',
+            'buy_budget' => 'required',
+            'buy_request' => 'required',
+        ]);
+
+        Record::create($request->all());
+
+        return redirect()->route('record.index')
+                         ->with('success', 'เพิ่มข้อมูลเรียบร้อยแล้ว');
     }
 
     /**
@@ -60,7 +80,9 @@ class RecordController extends Controller
      */
     public function edit(Record $record)
     {
-        //
+        return view('record.edit', [
+            'pagename' => "บันทึกขอซื้อ/จ้าง",
+        ],compact('record'));
     }
 
     /**
@@ -72,7 +94,18 @@ class RecordController extends Controller
      */
     public function update(Request $request, Record $record)
     {
-        //
+        $request->validate([
+            'buy_number' => 'required',
+            'buy_date' => 'required',
+            'buy_header' => 'required',
+            'buy_budget' => 'required',
+            'buy_request' => 'required',
+        ]);
+
+        $record->update($request->all());
+
+        return redirect()->route('record.index')
+                         ->with('success', 'แก้ไขข้อมูลเรียบร้อยแล้ว');
     }
 
     /**

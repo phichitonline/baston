@@ -8,6 +8,7 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ url('assets/media/image/favicon.png') }}"/>
+    <link rel="stylesheet" href="vendors/datepicker/daterangepicker.css" type="text/css">
 
     <!-- Main css -->
     <link rel="stylesheet" href="{{ url('vendors/bundle.css') }}" type="text/css">
@@ -494,7 +495,7 @@
                                 <strong>{{ Auth::user()->name }}</strong>
                             </span>
                             <figure class="avatar avatar-sm">
-                                <img src="{{ url('assets/media/image/user/man_avatar3.jpg') }}"
+                                <img src="{{ url('assets/media/image/user/testi-2.jpg') }}"
                                      class="rounded-circle"
                                      alt="avatar">
                             </figure>
@@ -503,16 +504,16 @@
                             <div class="text-center py-4"
                                  data-background-image="{{ url('assets/media/image/image1.jpg') }}">
                                 <figure class="avatar avatar-lg mb-3 border-0">
-                                    <img src="{{ url('assets/media/image/user/man_avatar3.jpg') }}"
+                                    <img src="{{ url('assets/media/image/user/testi-2.jpg') }}"
                                          class="rounded-circle" alt="image">
                                 </figure>
                                 <h5 class="mb-0">{{ Auth::user()->name }}</h5>
                             </div>
                             <div class="list-group list-group-flush">
-                                <a href="{{ route('profile') }}" class="list-group-item">ข้อมูล</a>
-                                <a href="#" class="list-group-item" data-sidebar-target="#settings">ตั้งค่า</a>
+                                <a href="{{ route('profile.edit', Auth::user()->id) }}" class="list-group-item">ข้อมูล</a>
+                                <a href="{{ route('setting.edit', 1) }}" class="list-group-item">ตั้งค่า</a>
                                 {{-- <a href="{{ route('logout') }}" class="list-group-item text-danger">ออกจากระบบ</a> --}}
-                                    <a class="list-group-item" href="{{ route('logout') }}"
+                                    <a class="list-group-item" href="#"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -580,7 +581,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" data-menu-target="#components">
+                            <a href="#" data-menu-target="#reports">
                                 <span class="menu-tab-icon">
                                     <i data-feather="mouse-pointer"></i>
                                 </span>
@@ -593,6 +594,14 @@
                                     <i data-feather="copy"></i>
                                 </span>
                                 <span>แบบฟอร์ม</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-menu-target="#setting">
+                                <span class="menu-tab-icon">
+                                    <i data-feather="database"></i>
+                                </span>
+                                <span>ตั้งค่า</span>
                             </a>
                         </li>
                     </ul>
@@ -612,9 +621,9 @@
                         </li>
                     </ul>
                     <ul id="home">
-                        <li class="navigation-divider">รายการ</li>
+                        <li class="navigation-divider">ระบบงานจัดซื้อจัดจ้าง</li>
                         <li>
-                            <a @if(!request()->segment(1) || request()->segment(1) == 'home') class="active"
+                            <a @if(request()->segment(1) == 'home') class="active"
                                @endif href="{{ route('home') }}">
                                <span class="nav-link-icon" data-feather="grid"></span>
                                 <span>Home</span>
@@ -661,7 +670,7 @@
                             </a>
                         </li>
                     </ul>
-                    <ul id="components">
+                    <ul id="reports">
                         <li class="navigation-divider">Components</li>
                         <li>
                             <a @if(request()->segment(1) == 'gallery') class="active"
@@ -858,6 +867,31 @@
                             </a>
                         </li>
                     </ul>
+                    <ul id="setting">
+                        <li class="navigation-divider">ตั้งค่า</li>
+                        <li>
+                            @guest
+                            @else
+                            <a @if(request()->segment(1) == 'setting') class="active"
+                                @endif href="{{ route('setting.edit', 1) }}">
+                               <span class="nav-link-icon" data-feather="settings"></span>
+                                <span>ตั้งค่าระบบ</span>
+                            </a>
+                            <a @if(request()->segment(1) == 'profile') class="active"
+                                @endif href="{{ route('profile.edit', Auth::user()->id) }}">
+                               <span class="nav-link-icon" data-feather="user"></span>
+                                <span>ข้อมูลผู้ใช้</span>
+                            </a>
+                            @endguest
+                        </li>
+                        <li>
+                            <a @if(request()->segment(1) == 'director') class="active"
+                                @endif href="{{ route('director.index') }}">
+                               <span class="nav-link-icon" data-feather="users"></span>
+                                <span>เจ้าหน้าที่/กรรมการ</span>
+                            </a>
+                        </li>
+                    </ul>
                     <ul id="plugins">
                         <li class="navigation-divider">Plugins</li>
                         <li>
@@ -978,8 +1012,8 @@
                             </a>
                             <ul>
                                 <li>
-                                    <a @if(request()->segment(1) == 'profile') class="active"
-                                       @endif href="{{ route('profile') }}">Profile</a></li>
+                                    <a @if(request()->segment(1) == 'profile2') class="active"
+                                       @endif href="#">Profile</a></li>
                                 <li>
                                     <a @if(request()->segment(1) == 'user-list') class="active"
                                        @endif href="{{ route('user-list') }}">User List</a></li>
@@ -1102,7 +1136,7 @@
                 <div>© 2021 สำนักงานหลักประกันสุขภาพแห่งชาติ (สปสช.) เขต 3 นครสวรรค์ - <a href="https://nakhonsawan.nhso.go.th/" target="_blank">NHSO3</a></div>
                 <div>
                     <nav class="nav">
-                        <a href="#" class="nav-link">Develop by Dr.GHOST</a>
+                        <a href="#" class="nav-link">Developed by Dr.GHOST</a>
                     </nav>
                 </div>
             </footer>

@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Buy;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
-class BuyController extends Controller
+class SettingController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,9 +14,7 @@ class BuyController extends Controller
      */
     public function index()
     {
-        return view('buy.index', [
-            'pagename' => "บันทึกขออนุมัติ",
-        ]);
+        return view('setting.edit');
     }
 
     /**
@@ -28,17 +22,9 @@ class BuyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        return view('buy.create', [
-            'pagename' => "บันทึกขออนุมัติ",
-            'buy_id' => $request->did,
-            'buy_number' => $request->bid,
-            'buy_date' => $request->bdate,
-            'buy_budget' => $request->bbudget,
-            'buy_header' => $request->bheader,
-            'buy_request' => $request->brequest,
-        ]);
+        //
     }
 
     /**
@@ -55,10 +41,10 @@ class BuyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Buy  $buy
+     * @param  \App\Models\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function show(Buy $buy)
+    public function show(Setting $setting)
     {
         //
     }
@@ -66,33 +52,44 @@ class BuyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Buy  $buy
+     * @param  \App\Models\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function edit(Buy $buy)
+    public function edit(Setting $setting)
     {
-        //
+        return view('setting.edit', [
+            'pagename' => "ตั้งค่าระบบ",
+        ],compact('setting'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Buy  $buy
+     * @param  \App\Models\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Buy $buy)
+    public function update(Request $request, Setting $setting)
     {
-        //
+        $request->validate([
+            's_no' => 'required',
+            's_name' => 'required',
+            's_headname' => 'required',
+        ]);
+
+        $setting->update($request->all());
+
+        return redirect()->route('setting.edit', 1)
+                         ->with('success', 'แก้ไขข้อมูลเรียบร้อยแล้ว');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Buy  $buy
+     * @param  \App\Models\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Buy $buy)
+    public function destroy(Setting $setting)
     {
         //
     }

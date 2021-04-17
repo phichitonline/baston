@@ -15,11 +15,12 @@ class CreateRecordsTable extends Migration
     {
         Schema::create('records', function (Blueprint $table) {
             $table->id();
-            $table->string('buy_number');
+            $table->string('buy_number')->unique();
             $table->dateTime('buy_date');
             $table->string('buy_header');
+            $table->double('buy_budget', 10, 2);
             $table->string('buy_request');
-            $table->text('buy_description');
+            $table->text('buy_description')->nullable();
             $table->timestamps();
         });
     }
