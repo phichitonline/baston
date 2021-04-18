@@ -30,19 +30,19 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title mb-0">รายการ{{ $pagename }} ที่ยังไม่ได้ดำเนินการ</h6>
+                    <h6 class="card-title mb-0">รายการ{{ $pagename }} ทั้งหมด</h6>
                 </div>
                 <div class="table-responsive">
-                    <table id="example1" class="table table-striped">
+                    <table id="example1" class="table table-small">
                         <thead>
                         <tr>
                             <th>ID</th>
                             <th>วันที่</th>
-                            <th>เลขที่บันทึก</th>
+                            <th>เลขที่</th>
                             <th>เรื่อง</th>
                             <th class="text-right">งบประมาณ</th>
                             <th>ผู้ขอ</th>
-                            <th class="text-center">Action</th>
+                            <th class="text-center">สถานะ</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -56,8 +56,30 @@
                             <td class="text-right">{{ number_format($data->buy_budget,2) }}</td>
                             <td>{{ $data->buy_request }}</td>
 
-                            <td class="text-right">
-                                <form action="{{ route('record.destroy', $data->id) }}" method="POST">
+                            <td>
+                                @if ($data->buy_status == 1)
+                                    <a class="badge bg-success-bright text-success">
+                                        ดำเนินการแล้ว
+                                    </a>
+                                @else
+                                <li class="nav-item dropdown">
+                                    <a href="#" class="badge bg-danger-bright text-danger nav-link dropdown-toggle" data-toggle="dropdown">
+                                        รอดำเนินการ
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <form action="{{ route('record.destroy', $data->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <a href="{{ route('record.edit', $data->id) }}" class="dropdown-item">แก้ไข</a>
+                                            <a href="{{ route('buy.create') }}/?did={{ $data->id }}&bid={{ $data->buy_number }}&bheader={{ $data->buy_header }}&brequest={{ $data->buy_request }}&bdate={{ $data->buy_date }}&bbudget={{ $data->buy_budget }}" class="dropdown-item text-primary">ทำบันทึกขออนุมัติ</a>
+                                            <div class="dropdown-divider"></div>
+                                            <button class="dropdown-item text-danger" onClick="return confirm('ยืนยันการลบรายการนี้');">ยกเลิก</button>
+                                        </form>
+                                    </div>
+                                </li>
+                                @endif
+
+                                {{-- <form action="{{ route('record.destroy', $data->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <a href="{{ route('record.edit', $data->id) }}" class="btn btn-outline-primary btn-sm btn-floating" data-toggle="tooltip" title="แก้ไข">
@@ -69,7 +91,7 @@
                                     <a href="{{ route('buy.create') }}/?did={{ $data->id }}&bid={{ $data->buy_number }}&bheader={{ $data->buy_header }}&brequest={{ $data->buy_request }}&bdate={{ $data->buy_date }}&bbudget={{ $data->buy_budget }}" class="btn btn-outline-success btn-sm btn-floating" data-toggle="tooltip" title="ทำบันทึกขออนุมัติ">
                                         <i class="ti-book"></i>
                                     </a>
-                                </form>
+                                </form> --}}
                             </td>
 
                         </tr>

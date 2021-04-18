@@ -16,10 +16,11 @@ class BuyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Buy $buy)
     {
         return view('buy.index', [
             'pagename' => "บันทึกขออนุมัติ",
+            'buy' => $buy->all(),
         ]);
     }
 
@@ -49,7 +50,19 @@ class BuyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'buy_number' => 'required',
+            'buy_date' => 'required',
+            'buy_header' => 'required',
+            'buy_budget' => 'required',
+            'buy_request' => 'required',
+        ]);
+
+        Buy::create($request->all());
+
+        return redirect()->route('buy.index')
+                         ->with('success', 'บันทึกข้อมูลเรียบร้อยแล้ว');
+
     }
 
     /**

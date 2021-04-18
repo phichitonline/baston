@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Procurement System : ระบบงานจัดซื้อจัดจ้าง</title>
+    <title>Procurement : ระบบงานจัดซื้อจัดจ้าง</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ url('assets/media/image/favicon.png') }}"/>
@@ -634,7 +634,7 @@
                                @endif href="{{ route('record.index') }}">
                                 <span class="nav-link-icon" data-feather="message-circle"></span>
                                 <span>1.บันทึกขอซื้อ/จ้าง</span>
-                                <span class="badge badge-danger">32</span>
+                                <span class="badge badge-danger">{{ $count_record }}</span>
                             </a>
                         </li>
                         <li>
@@ -642,7 +642,7 @@
                                @endif href="{{ route('buy.index') }}">
                                 <span class="nav-link-icon" data-feather="check-circle"></span>
                                 <span>2.บันทึกขออนุมัติ</span>
-                                <span class="badge badge-warning">32</span>
+                                <span class="badge badge-warning">{{ $count_buy }}</span>
                             </a>
                         </li>
                         <li>
@@ -1133,7 +1133,7 @@
 
             <!-- Footer -->
             <footer class="content-footer">
-                <div>© 2021 สำนักงานหลักประกันสุขภาพแห่งชาติ (สปสช.) เขต 3 นครสวรรค์ - <a href="https://nakhonsawan.nhso.go.th/" target="_blank">NHSO3</a></div>
+                <div>© 2021 @foreach ($setting as $data){{ $data->s_name }}@endforeach - <a href="https://nakhonsawan.nhso.go.th/" target="_blank">NHSO3</a></div>
                 <div>
                     <nav class="nav">
                         <a href="#" class="nav-link">Developed by Dr.GHOST</a>

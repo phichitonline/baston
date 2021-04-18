@@ -20,19 +20,21 @@
     </div>
                         <section class="card card-body border mb-0">
 
-                            <form class="needs-validation basic-repeater" novalidate="">
+                            <form class="needs-validation basic-repeater" action="{{ route('buy.store') }}" method="POST" novalidate="">
+                                @csrf
 
                                 <div class="form-group row">
-                                    <label for="validationCustomUsername" class="col-sm-2 col-form-label text-right">ที่</label>
+                                    <label for="buy_number" class="col-sm-2 col-form-label text-right">ที่</label>
                                     <div class="col-sm-4">
-                                      <input type="text" class="form-control" id="validationCustomUsername" placeholder="" value="{{ $buy_number }}" disabled>
+                                      <input type="text" class="form-control" value="{{ $buy_number }}" disabled>
+                                      <input type="hidden" class="form-control" id="buy_number" name="buy_number" value="{{ $buy_number }}">
                                       {{-- <div class="valid-feedback">ถูกต้อง</div> --}}
                                       <div class="invalid-feedback">กรุณาระบุเลขที่อนุมัติ</div>
                                     </div>
-                                    <label for="validationCustomDate" class="col-sm-2 col-form-label text-right">วันที่</label>
+                                    <label for="buy_date" class="col-sm-2 col-form-label text-right">วันที่</label>
                                     <div class="col-sm-4">
-                                        <input type="text" name="daterangepicker" class="form-control" value="{{ thaidate('j F Y',$buy_date) }}" disabled>
-                                        {{-- <input type="date" class="form-control" value="{{ $buy_date }}"> --}}
+                                        <input type="text" class="form-control" value="{{ thaidate('j F Y',$buy_date) }}" disabled>
+                                        <input type="hidden" class="form-control" id="buy_date" name="buy_date" value="{{ $buy_date }}">
                                       <div class="invalid-feedback">กรุณาระบุวันที่</div>
                                     </div>
                                 </div>
@@ -56,9 +58,10 @@
                                     </div>
                                 </fieldset>
                                 <div class="form-group row">
-                                  <label for="inputEmail31" class="col-sm-2 col-form-label"></label>
+                                  <label for="buy_header" class="col-sm-2 col-form-label"></label>
                                   <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputEmail31" placeholder="" value="{{ $buy_header }}" disabled>
+                                    <input type="text" class="form-control" value="{{ $buy_header }}" disabled>
+                                    <input type="hidden" class="form-control" id="buy_header" name="buy_header" value="{{ $buy_header }}">
                                     <div class="invalid-feedback">กรุณาระบุเรื่องที่ขออนุมัติ</div>
                                   </div>
                                 </div>
@@ -172,7 +175,7 @@
                                 <div class="form-group row">
                                     <label for="inputPassword3" class="col-sm-2 col-form-label">3. แต่งตั้งให้</label>
                                     <div class="col-sm-4">
-                                        <select class="js-example-basic-single">
+                                        <select class="js-example-basic-single" name="buy_request">
                                             <option>เลือกรายชื่อ</option>
                                             <option value="name1">นายบัญชา  คุ้มคูณ</option>
                                             <option value="name2">นายบัญชา2  คุ้มคูณ</option>
@@ -187,19 +190,19 @@
                                 <div class="form-group row">
                                     <label for="inputPassword3" class="col-sm-3 col-form-label">4. วงเงินที่จะซื้อหรือจ้าง จำนวน</label>
                                     <div class="col-sm-3">
-                                        <input type="number" class="form-control" name="department" placeholder="" required>
+                                        <input type="number" step="any" class="form-control" name="buy_budget" value="{{ $buy_budget }}" required>
                                         <div class="invalid-feedback">กรุณาระบุข้อมูล</div>
                                     </div>
                                     <label for="inputPassword3" class="col-sm-6 col-form-label">บาท (ตัวหนังสือ)</label>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="inputPassword3" class="col-sm-2 col-form-label text-right">รวมภาษีมูลค่าเพิ่มแล้ว จาก</label>
-                                    <div class="col-sm-4">
-                                        <input type="number" class="form-control" name="department" placeholder="" required>
+                                    <label for="inputPassword3" class="col-sm-3 col-form-label text-left">&nbsp;&nbsp;&nbsp;&nbsp;รวมภาษีมูลค่าเพิ่มแล้ว จาก</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" name="department" placeholder="" required>
                                         <div class="invalid-feedback">กรุณาระบุข้อมูล</div>
                                     </div>
                                     <label for="inputPassword3" class="col-sm-2 col-form-label text-right">รหัสเงินเลขที่</label>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-2">
                                         <input type="text" class="form-control" name="department" placeholder="" required>
                                         <div class="invalid-feedback">กรุณาระบุข้อมูล</div>
                                     </div>

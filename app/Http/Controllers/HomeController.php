@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+// use App\Models\Record;
+// use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.index');
+        return view('home.index', [
+            'pagename' => "Dashboard",
+        ]);
     }
 
 }

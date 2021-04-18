@@ -32,10 +32,12 @@ class RecordController extends Controller
      */
     public function create(Setting $setting)
     {
-        $sss = $setting->where('id', '=', '1')->get();
+        // กำหนดตัวแปลการตั้งค่า setting เป็นแบบ Global ที่สามารถเรียกใช้ได้ทุกที่
+        // ไว้ที่ไฟล์ App/Providers/AppServiceProvider.php
+        // $sss = $setting->where('id', '=', '1')->get();
         return view('record.create', [
             'pagename' => "บันทึกขอซื้อ/จ้าง",
-            'setting' => $sss,
+            // 'setting' => $sss,
         ]);
     }
 

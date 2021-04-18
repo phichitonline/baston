@@ -21,6 +21,7 @@ class CreateRecordsTable extends Migration
             $table->double('buy_budget', 10, 2);
             $table->string('buy_request');
             $table->text('buy_description')->nullable();
+            $table->string('buy_status')->nullable();
             $table->timestamps();
         });
     }
