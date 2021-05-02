@@ -16,13 +16,13 @@
                     <div class="invoice">
                         <div class="d-md-flex justify-content-between align-items-center">
                             <img src="{{ url('assets/media/image/logo/logo.png') }}" alt="logo">
-                            <h3 class="text-xs-left m-b-0">Invoice #INV-16</h3>
+                            <h3 class="text-xs-left m-b-0">เลขที่ สปสช.232.2/234</h3>
                         </div>
                         <hr class="m-t-b-50">
                         <div class="row">
                             <div class="col-md-6">
                                 <p>
-                                    <b>Baston - Responsive Admin Dashboard Template</b>
+                                    <b>ระบบงานจัดซื้อจัดจ้าง สปสช.เขต 3 นครสวรรค์</b>
                                 </p>
                                 <p>104,<br>Minare SK,<br>Canada, K1A 0G9.</p>
                             </div>
@@ -39,26 +39,26 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Description</th>
-                                    <th class="text-right">Quantity</th>
-                                    <th class="text-right">Unit cost</th>
-                                    <th class="text-right">Total</th>
+                                    <th>รายการ</th>
+                                    <th class="text-right">จำนวน</th>
+                                    <th class="text-right">ราคา@</th>
+                                    <th class="text-right">ราคารวม</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr class="text-right">
                                     <td class="text-left">1</td>
-                                    <td class="text-left">Brochure Design</td>
+                                    <td class="text-left">ค่าออกแบบป้ายประชาสัมพันธ์</td>
                                     <td>2</td>
-                                    <td>$20</td>
-                                    <td>$40</td>
+                                    <td>2000</td>
+                                    <td>4000</td>
                                 </tr>
                                 <tr class="text-right">
                                     <td class="text-left">2</td>
-                                    <td class="text-left">Web Design Packages(Template) - Basic</td>
-                                    <td>05</td>
-                                    <td>$25</td>
-                                    <td>$125</td>
+                                    <td class="text-left">ค่าพิมพ์ป้ายประชาสัมพันธ์ ขนาด 4 เมตร</td>
+                                    <td>5</td>
+                                    <td>2500</td>
+                                    <td>12500</td>
                                 </tr>
                                 <tr class="text-right">
                                     <td class="text-left">3</td>
@@ -78,9 +78,9 @@
                             </table>
                         </div>
                         <div class="text-right">
-                            <p>Sub - Total amount: $12,348</p>
-                            <p>vat (10%) : $138</p>
-                            <h4 class="font-weight-800">Total : $13,986</h4>
+                            <p>Sub - Total amount: 12,348</p>
+                            <p>vat (10%) : 1380</p>
+                            <h4 class="font-weight-800">รวม : 139,860</h4>
                         </div>
                         <p class="text-center small text-muted  m-t-50">
                             <span class="row">

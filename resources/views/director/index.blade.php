@@ -34,9 +34,7 @@
         <div class="col-md-12">
 
             <div class="card">
-                <div class="card-body">
-                    <h6 class="card-title mb-0">รายชื่อ{{ $pagename }}</h6>
-                </div>
+                <div><br></div>
                 <div class="table-responsive">
                     <table id="example1" class="table table-striped">
                         <thead>

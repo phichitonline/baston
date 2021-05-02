@@ -19,9 +19,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('setting', SettingController::class);
 Route::resource('profile', ProfileController::class);
-// Route::get('profile', 'ProfileController@edit')->name('profile');
-// Route::put('profile', 'ProfileController@update')->name('profile');
-// Route::put('profile/password', 'ProfileController@password');
 
 Route::resource('buy', BuyController::class);
 Route::resource('record', RecordController::class);

@@ -14,7 +14,7 @@
         <div class="page-title">
             <h3>{{ $pagename }}</h3>
             <a href="{{ route('record.create') }}" class="btn btn-outline-primary">
-                <i class="ti-plus mr-2"></i> เพิ่ม
+                <i class="ti-plus mr-2"></i> เพิ่มบันทึกขอซื้อ/จ้าง
             </a>
         </div>
     </div>
@@ -29,9 +29,7 @@
         <div class="col-md-12">
 
             <div class="card">
-                <div class="card-body">
-                    <h6 class="card-title mb-0">รายการ{{ $pagename }} ทั้งหมด</h6>
-                </div>
+                <div><br></div>
                 <div class="table-responsive">
                     <table id="example1" class="table table-small">
                         <thead>
@@ -58,9 +56,17 @@
 
                             <td>
                                 @if ($data->status == 1)
-                                    <a class="badge bg-success-bright text-success">
+                                    {{-- <a class="badge bg-success-bright text-success">
                                         ตรวจรับแล้ว
-                                    </a>
+                                    </a> --}}
+                                    <li class="nav-item dropdown">
+                                        <a href="#" class="badge bg-success-bright text-success nav-link dropdown-toggle" data-toggle="dropdown">
+                                            ตรวจรับแล้ว
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a href="{{ route('buy.show', $data->id) }}" class="dropdown-item">พิมพ์</a>
+                                        </div>
+                                    </li>
                                 @else
                                 <li class="nav-item dropdown">
                                     <a href="#" class="badge bg-danger-bright text-danger nav-link dropdown-toggle" data-toggle="dropdown">
@@ -71,6 +77,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <a href="{{ route('buy.edit', $data->id) }}" class="dropdown-item">แก้ไข</a>
+                                            <a href="{{ route('buy.show', $data->id) }}" class="dropdown-item">พิมพ์</a>
                                             <a href="{{ route('check.create') }}/?bid=1" class="dropdown-item text-primary">ตรวจรับ</a>
                                             <div class="dropdown-divider"></div>
                                             <button class="dropdown-item text-danger" onClick="return confirm('ยืนยันการลบรายการนี้');">ยกเลิก</button>

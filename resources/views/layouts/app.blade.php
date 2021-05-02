@@ -16,6 +16,17 @@
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
+    <style type="text/css">
+        u.dotted {
+            border-bottom: 2px dotted #000;
+            text-decoration: none;
+        }
+        u.dashed {
+            border-bottom: 1px dashed #000;
+            text-decoration: none;
+        }
+    </style>
+
 @yield('head')
 
 <!-- App css -->
@@ -33,7 +44,7 @@
 @endif
 <!-- Preloader -->
 <div class="preloader">
-    <img class="logo" src="{{ url('assets/media/image/logo/logo.png') }}" alt="logo">
+    <img class="logo" src="{{ url('assets/media/image/logo/logo2.png') }}" alt="logo">
     <img class="dark-logo" src="{{ url('assets/media/image/logo/dark-logo.png') }}" alt="logo dark">
     <div class="preloader-icon"></div>
 </div>
@@ -511,7 +522,7 @@
                             </div>
                             <div class="list-group list-group-flush">
                                 <a href="{{ route('profile.edit', Auth::user()->id) }}" class="list-group-item">ข้อมูล</a>
-                                <a href="{{ route('setting.edit', 1) }}" class="list-group-item">ตั้งค่า</a>
+                                <a href="{{ route('setting.index') }}" class="list-group-item">ตั้งค่า</a>
                                 {{-- <a href="{{ route('logout') }}" class="list-group-item text-danger">ออกจากระบบ</a> --}}
                                     <a class="list-group-item" href="#"
                                        onclick="event.preventDefault();
@@ -873,7 +884,7 @@
                             @guest
                             @else
                             <a @if(request()->segment(1) == 'setting') class="active"
-                                @endif href="{{ route('setting.edit', 1) }}">
+                                @endif href="{{ route('setting.index') }}">
                                <span class="nav-link-icon" data-feather="settings"></span>
                                 <span>ตั้งค่าระบบ</span>
                             </a>
@@ -1136,7 +1147,7 @@
                 <div>© 2021 @foreach ($setting as $data){{ $data->s_name }}@endforeach - <a href="https://nakhonsawan.nhso.go.th/" target="_blank">NHSO3</a></div>
                 <div>
                     <nav class="nav">
-                        <a href="#" class="nav-link">Developed by Dr.GHOST</a>
+                        {{-- <a href="#" class="nav-link">Developed by Dr.GHOST</a> --}}
                     </nav>
                 </div>
             </footer>

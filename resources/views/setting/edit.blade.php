@@ -22,27 +22,27 @@
                         <div class="form-group row">
                             <label for="s_no" class="col-md-4 col-form-label text-md-right">{{ __('เลขที่หนังสือ') }}</label>
                             <div class="col-md-6">
-                                <input id="s_no" type="text" class="form-control" name="s_no" value="{{ $setting->s_no }}">
-                                <input id="id" type="hidden" class="form-control" name="id" value="{{ $setting->id }}">
+                                <input id="s_no" type="text" class="form-control" name="s_no" value="@foreach ($setting as $data){{ $data->s_no }}@endforeach">
+                                <input id="id" type="hidden" class="form-control" name="id" value="@foreach ($setting as $data){{ $data->id }}@endforeach">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="s_name" class="col-md-4 col-form-label text-md-right">{{ __('ชื่อหน่วยงาน') }}</label>
                             <div class="col-md-6">
-                                <input id="s_name" type="text" class="form-control" name="s_name" value="{{ $setting->s_name }}">
+                                <input id="s_name" type="text" class="form-control" name="s_name" value="@foreach ($setting as $data){{ $data->s_name }}@endforeach">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="s_headname" class="col-md-4 col-form-label text-md-right">{{ __('ชื่อผู้อนุมัติ') }}</label>
                             <div class="col-md-6">
-                                <input id="s_headname" type="text" class="form-control" name="s_headname" value="{{ $setting->s_headname }}">
+                                <input id="s_headname" type="text" class="form-control" name="s_headname" value="@foreach ($setting as $data){{ $data->s_headname }}@endforeach">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="s_address" class="col-md-4 col-form-label text-md-right">{{ __('ที่อยู่') }}</label>
                             <div class="col-md-6">
-                                <input id="s_address" type="text" class="form-control" name="s_address" value="{{ $setting->s_address }}">
+                                <input id="s_address" type="text" class="form-control" name="s_address" value="@foreach ($setting as $data){{ $data->s_address }}@endforeach">
                             </div>
                         </div>
 

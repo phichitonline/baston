@@ -14,7 +14,9 @@ class SettingController extends Controller
      */
     public function index()
     {
-        return view('setting.edit');
+        return view('setting.edit', [
+            'pagename' => "ตั้งค่าระบบ",
+        ]);
     }
 
     /**
@@ -59,7 +61,7 @@ class SettingController extends Controller
     {
         return view('setting.edit', [
             'pagename' => "ตั้งค่าระบบ",
-        ],compact('setting'));
+        ]);
     }
 
     /**
@@ -79,7 +81,7 @@ class SettingController extends Controller
 
         $setting->update($request->all());
 
-        return redirect()->route('setting.edit', 1)
+        return redirect()->route('setting.index')
                          ->with('success', 'แก้ไขข้อมูลเรียบร้อยแล้ว');
     }
 

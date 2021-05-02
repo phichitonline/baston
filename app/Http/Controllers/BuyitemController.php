@@ -2,27 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Check;
-use App\Models\Buy;
+use App\Models\Buyitem;
 use Illuminate\Http\Request;
 
-class CheckController extends Controller
+class BuyitemController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Buy $buy)
+    public function index()
     {
-        return view('check.index', [
-            'pagename' => "บันทึกตรวจรับ",
-            'buy' => $buy->all(),
-        ]);
+        //
     }
 
     /**
@@ -49,10 +41,10 @@ class CheckController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Check  $check
+     * @param  \App\Models\Buyitem  $buyitem
      * @return \Illuminate\Http\Response
      */
-    public function show(Check $check)
+    public function show(Buyitem $buyitem)
     {
         //
     }
@@ -60,10 +52,10 @@ class CheckController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Check  $check
+     * @param  \App\Models\Buyitem  $buyitem
      * @return \Illuminate\Http\Response
      */
-    public function edit(Check $check)
+    public function edit(Buyitem $buyitem)
     {
         //
     }
@@ -72,10 +64,10 @@ class CheckController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Check  $check
+     * @param  \App\Models\Buyitem  $buyitem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Check $check)
+    public function update(Request $request, Buyitem $buyitem)
     {
         //
     }
@@ -83,13 +75,11 @@ class CheckController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Check  $check
+     * @param  \App\Models\Buyitem  $buyitem
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Check $check)
+    public function destroy(Buyitem $buyitem)
     {
-        $check->delete();
-        return redirect()->route('check.index')
-                         ->with('success', 'ลบข้อมูลเรียบร้อยแล้ว');
+        //
     }
 }

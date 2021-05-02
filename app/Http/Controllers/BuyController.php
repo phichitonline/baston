@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buy;
+use App\Models\Buyitem;
+use App\Models\Record;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BuyController extends Controller
 {
@@ -24,6 +27,17 @@ class BuyController extends Controller
         ]);
     }
 
+    public function preview(Buy $buy)
+    {
+        // $customer_service = Service::where('customer_id', '=', $customer->id)->get();
+
+        return view('buy.preview', [
+            'pagename' => "หน้าสำหรับพิมพ์",
+            // 'customer_service' => $customer_service
+        ], compact('buy'));
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -31,9 +45,9 @@ class BuyController extends Controller
      */
     public function create(Request $request)
     {
-        return view('buy.create', [
+        return view('buy.create2', [
             'pagename' => "บันทึกขออนุมัติ",
-            'buy_id' => $request->did,
+            'record_id' => $request->rid,
             'buy_number' => $request->bid,
             'buy_date' => $request->bdate,
             'buy_budget' => $request->bbudget,
@@ -60,6 +74,10 @@ class BuyController extends Controller
 
         Buy::create($request->all());
 
+        Record::where('id', $request->record_id)->update(['buy_status' => 1]);
+
+        // $record->update($request->all());
+
         return redirect()->route('buy.index')
                          ->with('success', 'บันทึกข้อมูลเรียบร้อยแล้ว');
 
@@ -73,7 +91,31 @@ class BuyController extends Controller
      */
     public function show(Buy $buy)
     {
-        //
+        $buyitem = Buyitem::where('buy_id', '=', $buy->id)
+        ->orderBy('item_no', 'asc')
+        ->skip(0)->take(13)
+        // ->limit(3)
+        ->get();
+        // $buysumprice = Buyitem::where('buy_id', '=', $buy->id)->sum('item_unit_price');
+        $buysumprice1 = DB::table('buyitems')
+        ->select(DB::raw('SUM((item_unit_price * item_qty) * 1.07) as sumprice'))
+        ->where('buy_id', '=', $buy->id)
+        ->skip(0)->take(13)
+        // ->limit(3)
+        ->get();
+
+        $buyitem_count = Buyitem::where('buy_id', '=', $buy->id)->count();
+
+        foreach ($buysumprice1 as $data) {
+            $buysumprice = $data->sumprice;
+        }
+
+        return view('buy.show', [
+            'pagename' => "หน้าสำหรับพิมพ์",
+            'buyitem' => $buyitem,
+            'buysumprice' => $buysumprice,
+            'buyitem_count' => $buyitem_count,
+        ], compact('buy'));
     }
 
     /**

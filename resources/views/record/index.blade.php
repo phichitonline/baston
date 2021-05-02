@@ -14,7 +14,7 @@
         <div class="page-title">
             <h3>{{ $pagename }}</h3>
             <a href="{{ route('record.create') }}" class="btn btn-outline-primary">
-                <i class="ti-plus mr-2"></i> เพิ่ม
+                <i class="ti-plus mr-2"></i> เพิ่มบันทึกขอซื้อ/จ้าง
             </a>
         </div>
     </div>
@@ -29,9 +29,7 @@
         <div class="col-md-12">
 
             <div class="card">
-                <div class="card-body">
-                    <h6 class="card-title mb-0">รายการ{{ $pagename }} ทั้งหมด</h6>
-                </div>
+                <div><br></div>
                 <div class="table-responsive">
                     <table id="example1" class="table table-small">
                         <thead>
@@ -71,7 +69,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <a href="{{ route('record.edit', $data->id) }}" class="dropdown-item">แก้ไข</a>
-                                            <a href="{{ route('buy.create') }}/?did={{ $data->id }}&bid={{ $data->buy_number }}&bheader={{ $data->buy_header }}&brequest={{ $data->buy_request }}&bdate={{ $data->buy_date }}&bbudget={{ $data->buy_budget }}" class="dropdown-item text-primary">ทำบันทึกขออนุมัติ</a>
+                                            <a href="{{ route('buy.create') }}/?rid={{ $data->id }}&bid={{ $data->buy_number }}&bheader={{ $data->buy_header }}&brequest={{ $data->buy_request }}&bdate={{ $data->buy_date }}&bbudget={{ $data->buy_budget }}" class="dropdown-item text-primary">ทำบันทึกขออนุมัติ</a>
                                             <div class="dropdown-divider"></div>
                                             <button class="dropdown-item text-danger" onClick="return confirm('ยืนยันการลบรายการนี้');">ยกเลิก</button>
                                         </form>
