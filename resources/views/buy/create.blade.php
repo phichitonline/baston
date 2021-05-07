@@ -176,13 +176,11 @@
                                 <div class="form-group row">
                                     <label for="inputPassword3" class="col-sm-2 col-form-label">3. แต่งตั้งให้</label>
                                     <div class="col-sm-4">
-                                        <select class="js-example-basic-single" name="buy_request">
-                                            <option>เลือกรายชื่อ</option>
-                                            <option value="name1">นายบัญชา  คุ้มคูณ</option>
-                                            <option value="name2">นายบัญชา2  คุ้มคูณ</option>
-                                            <option value="name3">นายบัญชา3  คุ้มคูณ</option>
-                                            <option value="name4">นายบัญชา4  คุ้มคูณ</option>
-                                            <option value="name5">นายบัญชา5  คุ้มคูณ</option>
+                                        <select class="js-example-basic-single">
+                                            <option value="">เลือกรายชื่อ</option>
+                                            @foreach ($director as $data)
+                                            <option value="{{ $data->name }}">{{ $data->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <label for="inputPassword3" class="col-sm-6 col-form-label">เป็นผู้กำหนดรายละเอียดการจ้าง/ซื้อ/เช่า*</label>
@@ -244,12 +242,10 @@
                                     <label for="inputPassword3" class="col-sm-2 col-form-label text-right">9.1</label>
                                     <div class="col-sm-4">
                                         <select class="js-example-basic-single">
-                                            <option>เลือกรายชื่อ</option>
-                                            <option value="name1">นายบัญชา  คุ้มคูณ</option>
-                                            <option value="name2">นายบัญชา2  คุ้มคูณ</option>
-                                            <option value="name3">นายบัญชา3  คุ้มคูณ</option>
-                                            <option value="name4">นายบัญชา4  คุ้มคูณ</option>
-                                            <option value="name5">นายบัญชา5  คุ้มคูณ</option>
+                                            <option value="">เลือกรายชื่อ</option>
+                                            @foreach ($director as $data)
+                                            <option value="{{ $data->name }}">{{ $data->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <label for="inputPassword31" class="col-sm-6 col-form-label">ประธานกรรมการ</label>
@@ -258,12 +254,10 @@
                                     <label for="inputPassword31" class="col-sm-2 col-form-label text-right">9.2</label>
                                     <div class="col-sm-4">
                                         <select class="js-example-basic-single">
-                                            <option> &nbsp;</option>
-                                            <option value="name1">นายบัญชา  คุ้มคูณ</option>
-                                            <option value="name2">นายบัญชา2  คุ้มคูณ</option>
-                                            <option value="name3">นายบัญชา3  คุ้มคูณ</option>
-                                            <option value="name4">นายบัญชา4  คุ้มคูณ</option>
-                                            <option value="name5">นายบัญชา5  คุ้มคูณ</option>
+                                            <option value="">เลือกรายชื่อ</option>
+                                            @foreach ($director as $data)
+                                            <option value="{{ $data->name }}">{{ $data->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <label for="inputPassword32" class="col-sm-6 col-form-label">กรรมการ</label>
@@ -272,12 +266,10 @@
                                     <label for="inputPassword32" class="col-sm-2 col-form-label text-right">9.3</label>
                                     <div class="col-sm-4">
                                         <select class="js-example-basic-single">
-                                            <option> &nbsp;</option>
-                                            <option value="name1">นายบัญชา  คุ้มคูณ</option>
-                                            <option value="name2">นายบัญชา2  คุ้มคูณ</option>
-                                            <option value="name3">นายบัญชา3  คุ้มคูณ</option>
-                                            <option value="name4">นายบัญชา4  คุ้มคูณ</option>
-                                            <option value="name5">นายบัญชา5  คุ้มคูณ</option>
+                                            <option value="">เลือกรายชื่อ</option>
+                                            @foreach ($director as $data)
+                                            <option value="{{ $data->name }}">{{ $data->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <label for="inputPassword33" class="col-sm-6 col-form-label">กรรมการ</label>
@@ -296,12 +288,10 @@
                                     <label for="inputPassword3" class="col-sm-2 col-form-label text-right">ลงชื่อ</label>
                                     <div class="col-sm-4">
                                         <select class="js-example-basic-single">
-                                            <option>เลือกรายชื่อ</option>
-                                            <option value="name1">นายบัญชา  คุ้มคูณ</option>
-                                            <option value="name2">นายบัญชา2  คุ้มคูณ</option>
-                                            <option value="name3">นายบัญชา3  คุ้มคูณ</option>
-                                            <option value="name4">นายบัญชา4  คุ้มคูณ</option>
-                                            <option value="name5">นายบัญชา5  คุ้มคูณ</option>
+                                            <option value="">เลือกรายชื่อ</option>
+                                            @foreach ($director as $data)
+                                            <option value="{{ $data->name }}">{{ $data->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <label for="inputPassword3" class="col-sm-4 col-form-label">เจ้าหน้าที่</label>
@@ -312,12 +302,10 @@
                                     <label for="inputPassword3" class="col-sm-2 col-form-label text-right">ลงชื่อ</label>
                                     <div class="col-sm-4">
                                         <select class="js-example-basic-single">
-                                            <option>เลือกรายชื่อ</option>
-                                            <option value="name1">นายบัญชา  คุ้มคูณ</option>
-                                            <option value="name2">นายบัญชา2  คุ้มคูณ</option>
-                                            <option value="name3">นายบัญชา3  คุ้มคูณ</option>
-                                            <option value="name4">นายบัญชา4  คุ้มคูณ</option>
-                                            <option value="name5">นายบัญชา5  คุ้มคูณ</option>
+                                            <option value="">เลือกรายชื่อ</option>
+                                            @foreach ($director as $data)
+                                            <option value="{{ $data->name }}">{{ $data->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <label for="inputPassword3" class="col-sm-4 col-form-label">หัวหน้าเจ้าหน้าที่</label>
@@ -348,13 +336,13 @@
 
                     {{-- </div> --}}
 
-            <div data-label="หมายเหตุ" class="demo-code-preview">
+            {{-- <div data-label="หมายเหตุ" class="demo-code-preview">
                 <pre><code>
                     คำอธิบาย กรุณาตรวจสอบข้อมูลให้ถูกต้องเรียบร้อยแล้วติ๊กเลือก เพื่อยืนยันการบันทึก
                     กรุณาตรวจสอบข้อมูลให้ถูกต้องเรียบร้อยแล้วติ๊กเลือก เพื่อยืนยันการบันทึก กรุณาตรวจสอบข้อมูลให้ถูกต้องเรียบร้อยแล้วติ๊กเลือก เพื่อยืนยันการบันทึก
                     กรุณาตรวจสอบข้อมูลให้ถูกต้องเรียบร้อยแล้วติ๊กเลือก เพื่อยืนยันการบันทึก
                 </code></pre>
-            </div>
+            </div> --}}
 
 
 @endsection

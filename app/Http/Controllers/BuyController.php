@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Buy;
 use App\Models\Buyitem;
 use App\Models\Record;
+use App\Models\Director;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -45,6 +46,8 @@ class BuyController extends Controller
      */
     public function create(Request $request)
     {
+        $director = Director::get();
+
         return view('buy.create2', [
             'pagename' => "บันทึกขออนุมัติ",
             'record_id' => $request->rid,
@@ -53,6 +56,7 @@ class BuyController extends Controller
             'buy_budget' => $request->bbudget,
             'buy_header' => $request->bheader,
             'buy_request' => $request->brequest,
+            'director' => $director,
         ]);
     }
 
@@ -64,13 +68,6 @@ class BuyController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'buy_number' => 'required',
-            'buy_date' => 'required',
-            'buy_header' => 'required',
-            'buy_budget' => 'required',
-            'buy_request' => 'required',
-        ]);
 
         Buy::create($request->all());
 

@@ -98,7 +98,7 @@
                             <div class="form-group row">
                                 <label for="buy_description" class="col-md-2 col-form-label text-md-right"></label>
                                 <div class="col-md-10">
-                                    <button type="submit" class="btn btn-primary"><i class="ti-check-box mr-2"></i> เพิ่มบันทึกขอซื้อ/จ้าง</button>
+                                    <button type="submit" class="btn btn-primary"><i class="ti-save mr-2"></i> เพิ่มบันทึกขอซื้อ/จ้าง</button>
                                 </div>
                             </div>
 

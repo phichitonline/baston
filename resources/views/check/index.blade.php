@@ -56,19 +56,28 @@
 
                             <td>
                                 @if ($data->status == 1)
-                                    <a class="badge bg-success-bright text-success">
+                                    {{-- <a class="badge bg-success-bright text-success">
                                         ตรวจรับแล้ว
-                                    </a>
+                                    </a> --}}
+                                    <li class="nav-item dropdown">
+                                        <a href="#" class="badge bg-success-bright text-success nav-link dropdown-toggle" data-toggle="dropdown">
+                                            ตรวจรับแล้ว
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a href="{{ route('buy.show', $data->id) }}" class="dropdown-item">พิมพ์ขออนุมัติ</a>
+                                        </div>
+                                    </li>
                                 @else
                                 <li class="nav-item dropdown">
                                     <a href="#" class="badge bg-danger-bright text-danger nav-link dropdown-toggle" data-toggle="dropdown">
                                         รอตรวจรับ
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <form action="{{ route('buy.destroy', $data->id) }}" method="POST">
+                                        <form action="{{ route('check.destroy', $data->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <a href="{{ route('buy.edit', $data->id) }}" class="dropdown-item">แก้ไข</a>
+                                            <a href="{{ route('check.show', $data->id) }}" class="dropdown-item">พิมพ์ขออนุมัติ</a>
                                             <a href="{{ route('check.create') }}/?bid=1" class="dropdown-item text-primary">ตรวจรับ</a>
                                             <div class="dropdown-divider"></div>
                                             <button class="dropdown-item text-danger" onClick="return confirm('ยืนยันการลบรายการนี้');">ยกเลิก</button>
@@ -77,19 +86,6 @@
                                 </li>
                                 @endif
 
-                                {{-- <form action="{{ route('record.destroy', $data->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <a href="{{ route('record.edit', $data->id) }}" class="btn btn-outline-primary btn-sm btn-floating" data-toggle="tooltip" title="แก้ไข">
-                                        <i class="ti-pencil"></i>
-                                    </a>
-                                    <button class="btn btn-outline-danger btn-sm btn-floating" data-toggle="tooltip" title="ลบ" onClick="return confirm('ยืนยันการลบรายการนี้');">
-                                        <i class="ti-trash"></i>
-                                    </button>
-                                    <a href="{{ route('buy.create') }}/?did={{ $data->id }}&bid={{ $data->buy_number }}&bheader={{ $data->buy_header }}&brequest={{ $data->buy_request }}&bdate={{ $data->buy_date }}&bbudget={{ $data->buy_budget }}" class="btn btn-outline-success btn-sm btn-floating" data-toggle="tooltip" title="ทำบันทึกขออนุมัติ">
-                                        <i class="ti-book"></i>
-                                    </a>
-                                </form> --}}
                             </td>
 
                         </tr>

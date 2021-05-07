@@ -64,7 +64,7 @@
                                             ตรวจรับแล้ว
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="{{ route('buy.show', $data->id) }}" class="dropdown-item">พิมพ์</a>
+                                            <a href="{{ route('buy.show', $data->id) }}" class="dropdown-item">พิมพ์ขออนุมัติ</a>
                                         </div>
                                     </li>
                                 @else
@@ -77,7 +77,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <a href="{{ route('buy.edit', $data->id) }}" class="dropdown-item">แก้ไข</a>
-                                            <a href="{{ route('buy.show', $data->id) }}" class="dropdown-item">พิมพ์</a>
+                                            <a href="{{ route('buy.show', $data->id) }}" class="dropdown-item">พิมพ์ขออนุมัติ</a>
                                             <a href="{{ route('check.create') }}/?bid=1" class="dropdown-item text-primary">ตรวจรับ</a>
                                             <div class="dropdown-divider"></div>
                                             <button class="dropdown-item text-danger" onClick="return confirm('ยืนยันการลบรายการนี้');">ยกเลิก</button>
