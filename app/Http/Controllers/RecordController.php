@@ -53,7 +53,7 @@ class RecordController extends Controller
             'buy_number' => 'required',
             'buy_type' => 'required',
             'buy_date' => 'required',
-            'buy_header' => 'required',
+            'buy_subject' => 'required',
             'buy_budget' => 'required',
             'buy_request' => 'required',
         ]);
@@ -100,7 +100,7 @@ class RecordController extends Controller
         $request->validate([
             'buy_number' => 'required',
             'buy_date' => 'required',
-            'buy_header' => 'required',
+            'buy_subject' => 'required',
             'buy_budget' => 'required',
             'buy_request' => 'required',
         ]);

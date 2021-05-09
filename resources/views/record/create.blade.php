@@ -76,9 +76,9 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="buy_header" class="col-md-2 col-form-label text-md-right">เรื่อง</label>
-                                <div class="col-md-10"><input type="text" class="form-control" id="buy_header" name="buy_header" required>
-                                    @error('buy_header')
+                                <label for="buy_subject" class="col-md-2 col-form-label text-md-right">เรื่อง</label>
+                                <div class="col-md-10"><input type="text" class="form-control" id="buy_subject" name="buy_subject" required>
+                                    @error('buy_subject')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

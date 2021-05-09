@@ -27,7 +27,7 @@ class CreateBuysTable extends Migration
             $table->string('buy_perspec');
             $table->double('buy_budget', 10, 2);
             $table->string('buy_project');
-            $table->string('buy_budgettcode');
+            $table->string('buy_budgetcode');
             $table->string('buy_period');
             $table->string('buy_shop');
             $table->string('buy_percheck1');

@@ -71,10 +71,10 @@
                                     </div>
                                 </fieldset>
                                 <div class="form-group row">
-                                  <label for="buy_header" class="col-sm-2 col-form-label"></label>
+                                  <label for="buy_subject" class="col-sm-2 col-form-label"></label>
                                   <div class="col-sm-10">
-                                    <input type="text" class="form-control text-danger" value="{{ $buy_header }}" disabled>
-                                    <input type="hidden" class="form-control" id="buy_header" name="buy_header" value="{{ $buy_header }}">
+                                    <input type="text" class="form-control text-danger" value="{{ $buy_subject }}" disabled>
+                                    <input type="hidden" class="form-control" id="buy_subject" name="buy_subject" value="{{ $buy_subject }}">
                                     <div class="invalid-feedback">กรุณาระบุเรื่องที่ขออนุมัติ</div>
                                   </div>
                                 </div>
@@ -89,7 +89,7 @@
                                   <label for="buy_header2" class="col-sm-2 col-form-label text-right">ด้วย</label>
                                   <div class="col-sm-10">
                                     <input type="text" class="form-control" name="buy_header2" id="buy_header2" placeholder=""
-                                    value="สำนักงานหลักประกันสุขภาพแห่งชาติ เขต 3 นครสวรรค์ มีความประสงค์จะดำเนินการ {{ $buy_type_name }} {{ $buy_header }}" required>
+                                    value="สำนักงานหลักประกันสุขภาพแห่งชาติ เขต 3 นครสวรรค์ มีความประสงค์จะดำเนินการ {{ $buy_type_name }} {{ $buy_subject }}" required>
                                     <div class="invalid-feedback">กรุณาระบุข้อมูล</div>
                                   </div>
                                 </div>

@@ -55,7 +55,7 @@ class BuyController extends Controller
             'buy_type' => $request->btype,
             'buy_date' => $request->bdate,
             'buy_budget' => $request->bbudget,
-            'buy_header' => $request->bheader,
+            'buy_subject' => $request->bsubject,
             'buy_request' => $request->brequest,
             'buy_description' => $request->bdesc,
             'director' => $director,

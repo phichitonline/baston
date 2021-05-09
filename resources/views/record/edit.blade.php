@@ -76,8 +76,8 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="buy_header" class="col-md-2 col-form-label text-md-right">เรื่อง</label>
-                                <div class="col-md-10"><input type="text" class="form-control" id="buy_header" name="buy_header" value="{{ $record->buy_header }}">
+                                <label for="buy_subject" class="col-md-2 col-form-label text-md-right">เรื่อง</label>
+                                <div class="col-md-10"><input type="text" class="form-control" id="buy_subject" name="buy_subject" value="{{ $record->buy_subject }}">
                                 </div>
                             </div>
                             <div class="form-group row">
