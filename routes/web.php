@@ -27,6 +27,7 @@ Route::resource('requisition', RequisitionController::class);
 Route::resource('director', DirectorController::class);
 
 Route::get('report', 'ReportController@index')->name('report');
+Route::get('test', 'BuyController@test')->name('test');
 
 // **********************************************
 // Route::get('/', function () {

@@ -21,6 +21,7 @@
                         <section class="card card-body border mb-0">
 
                             <form class="needs-validation basic-repeater" action="{{ route('buy.store') }}" method="POST" novalidate="">
+                            {{-- <form class="needs-validation basic-repeater" action="{{ route('test') }}" method="GET" novalidate=""> --}}
                                 @csrf
 
                                 <div class="form-group row">
@@ -98,7 +99,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div data-repeater-list="group-item">
+                                <div data-repeater-list="groupitem">
                                     <div data-repeater-item>
                                         <div class="row">
                                             <div class="col-md-6 col-sm-12 form-group">
@@ -132,16 +133,16 @@
 
                                 <!-- form-group -->
                                 <div class="form-group row">
-                                    <label for="inputPassword3" class="col-sm-2 col-form-label text-right">ลงชื่อ</label>
+                                    <label for="staff_name1" class="col-sm-2 col-form-label text-right">ลงชื่อ</label>
                                     <div class="col-sm-4">
-                                        <select class="js-example-basic-single">
+                                        <select name="staff_name1" class="js-example-basic-single">
                                             <option value="">เลือกรายชื่อ</option>
                                             @foreach ($director as $data)
                                             <option value="{{ $data->name }}">{{ $data->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <label for="inputPassword3" class="col-sm-4 col-form-label">หัวหน้าเจ้าหน้าที่</label>
+                                    <label for="staff_name1" class="col-sm-4 col-form-label">หัวหน้าเจ้าหน้าที่</label>
                                 </div>
 
 

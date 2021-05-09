@@ -48,7 +48,7 @@ class BuyController extends Controller
     {
         $director = Director::get();
 
-        return view('buy.create2', [
+        return view('buy.create', [
             'pagename' => "บันทึกขออนุมัติ",
             'record_id' => $request->rid,
             'buy_number' => $request->bid,
@@ -60,6 +60,28 @@ class BuyController extends Controller
         ]);
     }
 
+
+    public function test(Request $request)
+    {
+        $record_id = $request->record_id;
+        $buy_number = $request->buy_number;
+        $buy_date = $request->buy_date;
+        $buytype = $request->buytype;
+        $buy_header = $request->buy_header;
+
+        $groupitem = $request->groupitem;
+
+        return view('buy.test', [
+            'pagename' => "ทดสอบ",
+            'groupitem' => $groupitem,
+            'record_id' => $record_id,
+            'buy_number' => $buy_number,
+            'buy_date' => $buy_date,
+            'buytype' => $buytype,
+            'buy_header' => $buy_header,
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -68,12 +90,23 @@ class BuyController extends Controller
      */
     public function store(Request $request)
     {
-
         Buy::create($request->all());
 
         Record::where('id', $request->record_id)->update(['buy_status' => 1]);
 
-        // $record->update($request->all());
+        $i = 1;
+        $groupitem = $request->groupitem;
+        foreach($groupitem as $data) {
+            Buyitem::create([
+                'buy_id' => $request->record_id,
+                'item_no' => $i++,
+                'item_name' => $data['item_name'],
+                'item_qty' => $data['item_qty'],
+                'item_unit' => $data['item_unit'],
+                'item_unit_price' => $data['item_unit_price'],
+                'item_std_price' => $data['item_std_price'],
+            ]);
+        }
 
         return redirect()->route('buy.index')
                          ->with('success', 'บันทึกข้อมูลเรียบร้อยแล้ว');
