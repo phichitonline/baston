@@ -35,10 +35,38 @@
                         <form action="{{ route('record.update',$record->id) }}" method="POST" novalidate="novalidate">
                             @csrf
                             @method('PUT')
+                            <fieldset class="form-group">
+                                @php
+                                if ($record->buy_type == 1) {
+                                    $buy_type_checked1 = "checked";
+                                } else if ($record->buy_type == 2) {
+                                    $buy_type_checked2 = "checked";
+                                } else {
+                                    $buy_type_checked3 = "checked";
+                                }
+                                @endphp
+                                <div class="row">
+                                  <legend class="col-form-label col-sm-2 pt-0 text-right">ขออนุมัติ</legend>
+                                  <div class="col-sm-10">
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="buy_type" id="buy_type1" value="1" @php if (isset($buy_type_checked1)) { echo $buy_type_checked1; } @endphp>
+                                      <label class="form-check-label" for="buy_type1">ซื้อ</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="buy_type" id="buy_type2" value="2" @php if (isset($buy_type_checked2)) { echo $buy_type_checked2; } @endphp>
+                                      <label class="form-check-label" for="buy_type2">จ้าง</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="buy_type" id="buy_type3" value="3" @php if (isset($buy_type_checked3)) { echo $buy_type_checked3; } @endphp>
+                                      <label class="form-check-label" for="buy_type3">เช่า</label>
+                                    </div>
+                                  </div>
+                                </div>
+                            </fieldset>
                             <div class="form-group row">
                                 <label for="buy_date" class="col-md-2 col-form-label text-md-right">วันที่</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" id="buy_date" name="buy_date" value="{{ $record->buy_date }}">
+                                    <input type="text" class="form-control" id="buy_date" name="buy_date" value="{{ thaidate('Y',$record->buy_date)-543 }}{{ thaidate('-m-d',$record->buy_date) }}">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -61,7 +89,7 @@
                             <div class="form-group row">
                                 <label for="buy_request" class="col-md-2 col-form-label text-md-right">ผู้ขอ</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" id="buy_request" name="buy_request" value="{{ Auth::user()->name }}" required>
+                                    <input type="text" class="form-control" id="buy_request" name="buy_request" value="{{ $record->buy_request }}">
                                 </div>
                             </div>
                             <div class="form-group row">

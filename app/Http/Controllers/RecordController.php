@@ -20,7 +20,7 @@ class RecordController extends Controller
     public function index(Record $record)
     {
         return view('record.index', [
-            'pagename' => "บันทึกขอซื้อ/จ้าง",
+            'pagename' => "บันทึกขอซื้อ/จ้าง/เช่า",
             'record' => $record->all(),
         ]);
     }
@@ -51,6 +51,7 @@ class RecordController extends Controller
     {
         $request->validate([
             'buy_number' => 'required',
+            'buy_type' => 'required',
             'buy_date' => 'required',
             'buy_header' => 'required',
             'buy_budget' => 'required',

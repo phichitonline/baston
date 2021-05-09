@@ -644,22 +644,22 @@
                             <a @if(request()->segment(1) == 'record') class="active"
                                @endif href="{{ route('record.index') }}">
                                 <span class="nav-link-icon" data-feather="message-circle"></span>
-                                <span>1.บันทึกขอซื้อ/จ้าง</span>
+                                <span>1.บันทึกขอ</span>
                                 <span class="badge badge-danger">{{ $count_record }}</span>
                             </a>
                         </li>
                         <li>
                             <a @if(request()->segment(1) == 'buy') class="active"
                                @endif href="{{ route('buy.index') }}">
-                                <span class="nav-link-icon" data-feather="check-circle"></span>
-                                <span>2.บันทึกขออนุมัติ</span>
+                                <span class="nav-link-icon" data-feather="mail"></span>
+                                <span>2.แบบขออนุมัติ</span>
                                 <span class="badge badge-warning">{{ $count_buy }}</span>
                             </a>
                         </li>
                         <li>
                             <a @if(request()->segment(1) == 'check') class="active"
                                @endif href="{{ route('check.index') }}">
-                                <span class="nav-link-icon" data-feather="mail"></span>
+                                <span class="nav-link-icon" data-feather="check-circle"></span>
                                 <span>3.ตรวจรับ</span>
                                 <span class="badge badge-success">15</span>
                             </a>

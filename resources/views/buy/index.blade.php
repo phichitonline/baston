@@ -65,6 +65,7 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a href="{{ route('buy.show', $data->id) }}" class="dropdown-item">พิมพ์ขออนุมัติ</a>
+                                            <a href="{{ route('check.show', $data->id) }}" class="dropdown-item text-success">พิมพ์ตรวจรับ</a>
                                         </div>
                                     </li>
                                 @else

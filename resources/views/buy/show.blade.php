@@ -97,7 +97,7 @@
                                         <td>{{ number_format($data->item_qty,2) }}</td>
                                         <td>{{ number_format($data->item_unit_price,2) }}/{{ $data->item_unit }}</td>
                                         <td>{{ number_format($data->item_std_price,2) }}</td>
-                                        <td>{{ number_format(($data->item_unit_price * $data->item_qty) * 1.07,2) }}</td>
+                                        <td>{{ number_format(($data->item_unit_price * $data->item_qty),2) }}</td>
                                     </tr>
                                     @endforeach
 

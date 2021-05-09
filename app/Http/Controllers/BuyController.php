@@ -52,10 +52,12 @@ class BuyController extends Controller
             'pagename' => "บันทึกขออนุมัติ",
             'record_id' => $request->rid,
             'buy_number' => $request->bid,
+            'buy_type' => $request->btype,
             'buy_date' => $request->bdate,
             'buy_budget' => $request->bbudget,
             'buy_header' => $request->bheader,
             'buy_request' => $request->brequest,
+            'buy_description' => $request->bdesc,
             'director' => $director,
         ]);
     }
@@ -92,13 +94,13 @@ class BuyController extends Controller
     {
         Buy::create($request->all());
 
-        Record::where('id', $request->record_id)->update(['buy_status' => 1]);
+        Record::where('id', $request->rid)->update(['buy_status' => 1]);
 
         $i = 1;
         $groupitem = $request->groupitem;
         foreach($groupitem as $data) {
             Buyitem::create([
-                'buy_id' => $request->record_id,
+                'rid' => $request->rid,
                 'item_no' => $i++,
                 'item_name' => $data['item_name'],
                 'item_qty' => $data['item_qty'],
@@ -121,20 +123,20 @@ class BuyController extends Controller
      */
     public function show(Buy $buy)
     {
-        $buyitem = Buyitem::where('buy_id', '=', $buy->id)
+        $buyitem = Buyitem::where('rid', '=', $buy->rid)
         ->orderBy('item_no', 'asc')
         ->skip(0)->take(13)
         // ->limit(3)
         ->get();
         // $buysumprice = Buyitem::where('buy_id', '=', $buy->id)->sum('item_unit_price');
         $buysumprice1 = DB::table('buyitems')
-        ->select(DB::raw('SUM((item_unit_price * item_qty) * 1.07) as sumprice'))
-        ->where('buy_id', '=', $buy->id)
+        ->select(DB::raw('SUM((item_unit_price * item_qty)) as sumprice'))
+        ->where('rid', '=', $buy->rid)
         ->skip(0)->take(13)
         // ->limit(3)
         ->get();
 
-        $buyitem_count = Buyitem::where('buy_id', '=', $buy->id)->count();
+        $buyitem_count = Buyitem::where('rid', '=', $buy->rid)->count();
 
         foreach ($buysumprice1 as $data) {
             $buysumprice = $data->sumprice;

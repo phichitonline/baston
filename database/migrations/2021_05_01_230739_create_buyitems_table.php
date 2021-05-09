@@ -15,7 +15,7 @@ class CreateBuyitemsTable extends Migration
     {
         Schema::create('buyitems', function (Blueprint $table) {
             $table->id();
-            $table->string('buy_id');
+            $table->string('rid');
             $table->tinyInteger('item_no'); //ตัวเลขลำดับที่
             $table->string('item_name');
             $table->double('item_qty', 10, 2);

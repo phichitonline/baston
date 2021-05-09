@@ -34,6 +34,25 @@
                     <div class="col-md-12">
                         <form action="{{ route('record.store') }}" method="POST">
                             @csrf
+                            <fieldset class="form-group">
+                                <div class="row">
+                                  <legend class="col-form-label col-sm-2 pt-0 text-right">ขออนุมัติ</legend>
+                                  <div class="col-sm-10">
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="buy_type" id="buy_type1" value="1">
+                                      <label class="form-check-label" for="buy_type1">ซื้อ</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="buy_type" id="buy_type2" value="2">
+                                      <label class="form-check-label" for="buy_type2">จ้าง</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="buy_type" id="buy_type3" value="3">
+                                      <label class="form-check-label" for="buy_type3">เช่า</label>
+                                    </div>
+                                  </div>
+                                </div>
+                            </fieldset>
                             <div class="form-group row">
                                 <label for="buy_date" class="col-md-2 col-form-label text-md-right">วันที่</label>
                                 <div class="col-md-4">
