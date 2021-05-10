@@ -16,7 +16,7 @@ class ReportController extends Controller
     public function index()
     {
         $check_list = DB::connection('mysql')->select('
-            SELECT c.*,b.* FROM checks c LEFT JOIN buys b ON c.buy_id = b.id WHERE b.`status` = 1
+            SELECT c.id AS cid,c.*,b.* FROM checks c LEFT JOIN buys b ON c.buy_id = b.id WHERE b.`status` = 1
             ');
 
         return view('check.index', [
