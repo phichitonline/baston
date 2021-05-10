@@ -86,9 +86,9 @@
                                   </div>
                                 </div>
                                 <div class="form-group row">
-                                  <label for="buy_header2" class="col-sm-2 col-form-label text-right">ด้วย</label>
+                                  <label for="buy_subject2" class="col-sm-2 col-form-label text-right">ด้วย</label>
                                   <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="buy_header2" id="buy_header2" placeholder=""
+                                    <input type="text" class="form-control" name="buy_subject2" id="buy_subject2" placeholder=""
                                     value="สำนักงานหลักประกันสุขภาพแห่งชาติ เขต 3 นครสวรรค์ มีความประสงค์จะดำเนินการ {{ $buy_type_name }} {{ $buy_subject }}" required>
                                     <div class="invalid-feedback">กรุณาระบุข้อมูล</div>
                                   </div>
@@ -126,7 +126,11 @@
                                 <!-- form-group -->
                                 <div class="form-group wd-xs-300">
                                     <label>2. ขอบเขตของงานหรือรายละเอียดคุณลักษณะเฉพาะของพัสดุ</label>
-                                    <p>2.1 รายละเอียดการซื้อ/จ้าง/เช่า</p>
+                                    {{-- <p>2.1 รายละเอียดการซื้อ/จ้าง/เช่า</p> --}}
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label text-right">2.1</label>
+                                        <label class="col-sm-10 col-form-label">รายละเอียดการซื้อ/จ้าง/เช่า</label>
+                                    </div>
                                 </div>
 
                                 <div>
@@ -188,6 +192,10 @@
                                 <!-- form-group -->
                                 <div class="form-group row">
                                     <label for="buy_perspec" class="col-sm-2 col-form-label">3. แต่งตั้งให้</label>
+                                </div>
+                                <!-- form-group -->
+                                <div class="form-group row">
+                                    <label for="buy_perspec" class="col-sm-2 col-form-label text-right">3.1</label>
                                     <div class="col-sm-4">
                                         <select class="js-example-basic-single" name="buy_perspec">
                                             <option value="">เลือกรายชื่อ</option>
@@ -196,7 +204,33 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <label for="buy_perspec2" class="col-sm-6 col-form-label">เป็นผู้กำหนดรายละเอียดการจ้าง/ซื้อ/เช่า*</label>
+                                    <label for="buy_perspec" class="col-sm-6 col-form-label">ประธานกรรมการ</label>
+                                </div>
+                                <!-- form-group -->
+                                <div class="form-group row">
+                                    <label for="buy_perspec2" class="col-sm-2 col-form-label text-right">3.2</label>
+                                    <div class="col-sm-4">
+                                        <select class="js-example-basic-single" name="buy_perspec2">
+                                            <option value="">เลือกรายชื่อ</option>
+                                            @foreach ($director as $data)
+                                            <option value="{{ $data->name }}">{{ $data->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <label for="buy_perspec2" class="col-sm-6 col-form-label">กรรมการ</label>
+                                </div>
+                                <!-- form-group -->
+                                <div class="form-group row">
+                                    <label for="buy_perspec3" class="col-sm-2 col-form-label text-right">3.3</label>
+                                    <div class="col-sm-4">
+                                        <select class="js-example-basic-single" name="buy_perspec3">
+                                            <option value="">เลือกรายชื่อ</option>
+                                            @foreach ($director as $data)
+                                            <option value="{{ $data->name }}">{{ $data->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <label for="buy_perspec3" class="col-sm-6 col-form-label">กรรมการ เป็นผู้กำหนดรายละเอียดการจ้าง/ซื้อ/เช่า*</label>
                                 </div>
                                 <!-- form-group -->
                                 <div class="form-group row">

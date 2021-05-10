@@ -17,6 +17,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style type="text/css">
+        /* @media print {
+            @page { margin: 0; }
+            body { margin: 0.5cm; }
+            .pageBreak {
+                page-break-after: always;
+                margin-top: 2cm;
+            }
+        } */
+
         u.dotted {
             border-bottom: 2px dotted #000;
             text-decoration: none;
@@ -25,6 +34,7 @@
             border-bottom: 1px dashed #000;
             text-decoration: none;
         }
+
     </style>
 
 @yield('head')
@@ -660,8 +670,8 @@
                             <a @if(request()->segment(1) == 'check') class="active"
                                @endif href="{{ route('check.index') }}">
                                 <span class="nav-link-icon" data-feather="check-circle"></span>
-                                <span>3.ตรวจรับ</span>
-                                <span class="badge badge-success">15</span>
+                                <span>3.ตรวจรับแล้ว</span>
+                                <span class="badge badge-success">{{ $count_check }}</span>
                             </a>
                         </li>
                         <li>
@@ -669,7 +679,7 @@
                                @endif href="{{ route('report') }}">
                                 <span class="nav-link-icon" data-feather="file"></span>
                                 <span>4.รายงานผล</span>
-                                <span class="badge badge-primary">32</span>
+                                <span class="badge badge-primary">{{ $count_check }}</span>
                             </a>
                         </li>
                         <li>
@@ -677,7 +687,7 @@
                                @endif href="{{ route('requisition.index') }}">
                                 <span class="nav-link-icon" data-feather="calendar"></span>
                                 <span>5.ใบเบิก</span>
-                                <span class="badge badge-secondary">32</span>
+                                <span class="badge badge-secondary">{{ $count_check }}</span>
                             </a>
                         </li>
                     </ul>

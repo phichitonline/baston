@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Check;
 use App\Models\Buy;
+use App\Models\Director;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CheckController extends Controller
 {
@@ -17,11 +19,16 @@ class CheckController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Buy $buy)
+    public function index(Check $check)
     {
+
+        $check_list = DB::connection('mysql')->select('
+            SELECT c.id AS cid,c.*,b.* FROM checks c LEFT JOIN buys b ON c.buy_id = b.id
+            ');
+
         return view('check.index', [
             'pagename' => "บันทึกตรวจรับ",
-            'buy' => $buy->all(),
+            'check_list' => $check_list,
         ]);
     }
 
@@ -30,9 +37,20 @@ class CheckController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $director = Director::get();
+
+        return view('check.create', [
+            'pagename' => "ตรวจรับพัสดุ",
+            'buy_id' => $request->bid,
+            'buy_number' => $request->bnum,
+            'buy_subject' => $request->bsubj,
+            'buy_shop' => $request->bshop,
+            'buy_date' => $request->bdate,
+            'buy_budget' => $request->bbudget,
+            'director' => $director,
+        ]);
     }
 
     /**
@@ -43,7 +61,12 @@ class CheckController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Check::create($request->all());
+
+        Buy::where('id', $request->buy_id)->update(['status' => 1]);
+
+        return redirect()->route('check.index')
+                         ->with('success', 'บันทึกข้อมูลเรียบร้อยแล้ว');
     }
 
     /**
@@ -54,7 +77,14 @@ class CheckController extends Controller
      */
     public function show(Check $check)
     {
-        //
+        $check_list = DB::connection('mysql')->select('
+            SELECT c.*,b.* FROM checks c LEFT JOIN buys b ON c.buy_id = b.id WHERE c.id = '.$check->id.'
+            ');
+
+        return view('check.show', [
+            'pagename' => "หน้าสำหรับพิมพ์",
+            'check_list' => $check_list,
+        ], compact('check'));
     }
 
     /**

@@ -142,11 +142,17 @@ class BuyController extends Controller
             $buysumprice = $data->sumprice;
         }
 
+        $temp_budget = Record::where('id', '=', $buy->rid)->get();
+        foreach ($temp_budget as $data) {
+            $r_budget = $data->buy_budget;
+        }
+
         return view('buy.show', [
             'pagename' => "หน้าสำหรับพิมพ์",
             'buyitem' => $buyitem,
             'buysumprice' => $buysumprice,
             'buyitem_count' => $buyitem_count,
+            'r_budget' => $r_budget,
         ], compact('buy'));
     }
 

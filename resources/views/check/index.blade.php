@@ -35,24 +35,24 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>วันที่</th>
+                            <th>วันที่อนุมัติ</th>
                             <th>เลขที่</th>
                             <th>เรื่อง</th>
-                            <th class="text-right">งบประมาณ</th>
-                            <th>ผู้ขอ</th>
+                            <th class="text-right">มูลค่า</th>
+                            <th>วันที่ตรวจรับ</th>
                             <th class="text-center">สถานะ</th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        @foreach ($buy as $data)
+                        @foreach ($check_list as $data)
                         <tr>
-                            <td>{{ $data->id }}</td>
+                            <td>{{ $data->cid }}</td>
                             <td>{{ thaidate('j F Y',$data->buy_date) }}</td>
                             <td>{{ $data->buy_number }}</td>
-                            <td>{{ $data->buy_header }}</td>
-                            <td class="text-right">{{ number_format($data->buy_budget,2) }}</td>
-                            <td>{{ $data->buy_request }}</td>
+                            <td>{{ $data->buy_subject }}</td>
+                            <td class="text-right">{{ number_format($data->check_billtotal,2) }}</td>
+                            <td>{{ thaidate('j F Y',$data->check_checkdate) }}</td>
 
                             <td>
                                 @if ($data->status == 1)
@@ -64,7 +64,7 @@
                                             ตรวจรับแล้ว
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="{{ route('buy.show', $data->id) }}" class="dropdown-item">พิมพ์ขออนุมัติ</a>
+                                            <a href="{{ route('check.show', $data->cid) }}" class="dropdown-item">พิมพ์ใบตรวจรับ</a>
                                         </div>
                                     </li>
                                 @else
@@ -73,14 +73,14 @@
                                         รอตรวจรับ
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <form action="{{ route('check.destroy', $data->id) }}" method="POST">
+                                        <form action="{{ route('check.destroy', $data->cid) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <a href="{{ route('buy.edit', $data->id) }}" class="dropdown-item">แก้ไข</a>
-                                            <a href="{{ route('check.show', $data->id) }}" class="dropdown-item">พิมพ์ขออนุมัติ</a>
+                                            <a href="{{ route('buy.show', $data->id) }}" class="dropdown-item">พิมพ์ขออนุมัติ</a>
                                             <a href="{{ route('check.create') }}/?bid=1" class="dropdown-item text-primary">ตรวจรับ</a>
-                                            <div class="dropdown-divider"></div>
-                                            <button class="dropdown-item text-danger" onClick="return confirm('ยืนยันการลบรายการนี้');">ยกเลิก</button>
+                                            {{-- <div class="dropdown-divider"></div> --}}
+                                            {{-- <button class="dropdown-item text-danger" onClick="return confirm('ยืนยันการลบรายการนี้');">ยกเลิก</button> --}}
                                         </form>
                                     </div>
                                 </li>

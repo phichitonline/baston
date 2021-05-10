@@ -47,10 +47,19 @@
 
                         @foreach ($record as $data)
                         <tr>
-                            <td>{{ $data->id }}</td>
+                            @php
+                            if ($data->buy_type == 1) {
+                                $buy_type_name = "ซื้อ";
+                            } else if ($data->buy_type == 2) {
+                                $buy_type_name = "จ้าง";
+                            } else {
+                                $buy_type_name = "เช่า";
+                            }
+                            @endphp
+                            <td>{{ $data->cid }}</td>
                             <td>{{ thaidate('j F Y',$data->buy_date) }}</td>
                             <td>{{ $data->buy_number }}</td>
-                            <td>{{ $data->buy_header }}</td>
+                            <td>{{ $buy_type_name }}{{ $data->buy_subject }}</td>
                             <td class="text-right">{{ number_format($data->buy_budget,2) }}</td>
                             <td>{{ $data->buy_request }}</td>
 
@@ -65,7 +74,7 @@
                                         รอดำเนินการ
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <form action="{{ route('record.destroy', $data->id) }}" method="POST">
+                                        <form action="{{ route('check.destroy', $data->cid) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <a href="{{ route('record.edit', $data->id) }}" class="dropdown-item">แก้ไข</a>

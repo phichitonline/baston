@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Report;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
@@ -12,11 +13,15 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Report $report)
+    public function index()
     {
-        return view('report.index', [
-            'pagename' => "รายงาน",
-            'report' => $report->all(),
+        $check_list = DB::connection('mysql')->select('
+            SELECT c.*,b.* FROM checks c LEFT JOIN buys b ON c.buy_id = b.id WHERE b.`status` = 1
+            ');
+
+        return view('check.index', [
+            'pagename' => "รายงานผลการจัดซื้อ/จัดจ้าง",
+            'check_list' => $check_list,
         ]);
     }
 

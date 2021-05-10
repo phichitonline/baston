@@ -39,7 +39,7 @@
                             <th>เลขที่</th>
                             <th>เรื่อง</th>
                             <th class="text-right">งบประมาณ</th>
-                            <th>ผู้ขอ</th>
+                            <th class="text-right">จำนวนเงินใช้ไป</th>
                             <th class="text-center">สถานะ</th>
                         </tr>
                         </thead>
@@ -47,12 +47,29 @@
 
                         @foreach ($buy as $data)
                         <tr>
+                            @php
+                            if ($data->buy_type == 1) {
+                                $buy_type_name = "ซื้อ";
+                            } else if ($data->buy_type == 2) {
+                                $buy_type_name = "จ้าง";
+                            } else {
+                                $buy_type_name = "เช่า";
+                            }
+                            if ($data->buy_budgetuse > $data->buy_budget) {
+                                $budget_color = " text-danger";
+                            } else if ($data->buy_budgetuse < $data->buy_budget) {
+                                $budget_color = " text-success";
+                            } else {
+                                $budget_color = " ";
+                            }
+
+                            @endphp
                             <td>{{ $data->id }}</td>
                             <td>{{ thaidate('j F Y',$data->buy_date) }}</td>
                             <td>{{ $data->buy_number }}</td>
-                            <td>{{ $data->buy_header }}</td>
+                            <td>{{ $buy_type_name }}{{ $data->buy_subject }}</td>
                             <td class="text-right">{{ number_format($data->buy_budget,2) }}</td>
-                            <td>{{ $data->buy_request }}</td>
+                            <td class="text-right {{ $budget_color }}">{{ number_format($data->buy_budgetuse,2) }}</td>
 
                             <td>
                                 @if ($data->status == 1)
@@ -65,7 +82,6 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a href="{{ route('buy.show', $data->id) }}" class="dropdown-item">พิมพ์ขออนุมัติ</a>
-                                            <a href="{{ route('check.show', $data->id) }}" class="dropdown-item text-success">พิมพ์ตรวจรับ</a>
                                         </div>
                                     </li>
                                 @else
@@ -79,7 +95,7 @@
                                             @method('DELETE')
                                             <a href="{{ route('buy.edit', $data->id) }}" class="dropdown-item">แก้ไข</a>
                                             <a href="{{ route('buy.show', $data->id) }}" class="dropdown-item">พิมพ์ขออนุมัติ</a>
-                                            <a href="{{ route('check.create') }}/?bid=1" class="dropdown-item text-primary">ตรวจรับ</a>
+                                            <a href="{{ route('check.create') }}/?bid={{ $data->id }}&bsubj={{ $data->buy_subject }}&bnum={{ $data->buy_number }}&bshop={{ $data->buy_shop }}&bdate={{ $data->buy_date }}&bbudget={{ $data->buy_budget }}" class="dropdown-item text-primary">ตรวจรับ</a>
                                             <div class="dropdown-divider"></div>
                                             <button class="dropdown-item text-danger" onClick="return confirm('ยืนยันการลบรายการนี้');">ยกเลิก</button>
                                         </form>
