@@ -198,6 +198,11 @@ class BuyController extends Controller
      */
     public function destroy(Buy $buy)
     {
-        //
+        Buyitem::where('rid', $buy->rid)->delete();
+        Record::where('id', $buy->rid)->update(['buy_status' => NULL]);
+
+        $buy->delete();
+        return redirect()->route('buy.index')
+                         ->with('success', 'ลบข้อมูลเรียบร้อยแล้ว');
     }
 }

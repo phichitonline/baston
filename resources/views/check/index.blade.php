@@ -80,7 +80,16 @@
                                             ตรวจรับแล้ว
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="{{ route('check.show', $data->cid) }}" class="dropdown-item">พิมพ์ใบตรวจรับ</a>
+                                            <form action="{{ route('check.destroy', $data->cid) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <a href="{{ route('check.edit', $data->cid) }}" class="dropdown-item">แก้ไข</a>
+                                                <a href="{{ route('check.show', $data->cid) }}" class="dropdown-item">พิมพ์ใบตรวจรับ</a>
+                                                @if (Auth::user()->name == "admin")
+                                                <div class="dropdown-divider"></div>
+                                                <button class="dropdown-item text-danger" onClick="return confirm('ยืนยันการลบรายการนี้');">ยกเลิก</button>
+                                                @endif
+                                            </form>
                                         </div>
                                     </li>
                                 @else

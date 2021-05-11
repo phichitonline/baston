@@ -79,8 +79,10 @@
                                             @method('DELETE')
                                             <a href="{{ route('record.edit', $data->id) }}" class="dropdown-item">แก้ไข</a>
                                             <a href="{{ route('buy.create') }}/?rid={{ $data->id }}&bid={{ $data->buy_number }}&bsubject={{ $data->buy_subject }}&btype={{ $data->buy_type }}&brequest={{ $data->buy_request }}&bdate={{ $data->buy_date }}&bbudget={{ $data->buy_budget }}&bdesc={{ $data->buy_description }}" class="dropdown-item text-primary">ทำบันทึกขออนุมัติ</a>
+                                            @if (Auth::user()->name == "admin")
                                             <div class="dropdown-divider"></div>
                                             <button class="dropdown-item text-danger" onClick="return confirm('ยืนยันการลบรายการนี้');">ยกเลิก</button>
+                                            @endif
                                         </form>
                                     </div>
                                 </li>

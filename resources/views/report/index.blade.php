@@ -89,8 +89,8 @@
                                             ตรวจรับแล้ว
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="{{ route('buy.show', $data->id) }}" class="dropdown-item">พิมพ์ใบขออนุมัติ</a>
-                                            <a href="{{ route('check.show', $data->id) }}" class="dropdown-item">พิมพ์ใบตรวจรับ</a>
+                                            <a href="{{ route('buy.show', $data->b_id) }}" class="dropdown-item">พิมพ์ใบขออนุมัติ</a>
+                                            <a href="{{ route('check.show', $data->c_id) }}" class="dropdown-item">พิมพ์ใบตรวจรับ</a>
                                             <a href="#" class="dropdown-item">พิมพ์รายงานผล</a>
                                             <a href="#" class="dropdown-item">พิมพ์ใบเบิก</a>
                                         </div>

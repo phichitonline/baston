@@ -302,9 +302,6 @@
                         <p class="m-t-b-50">
                             <br>&nbsp;
                         </p>
-                        <p class="m-t-b-50">
-                            <br>&nbsp;
-                        </p>
                         @else
                         @endif
 
@@ -312,7 +309,13 @@
                         <p class="m-t-b-50">
                             <br>&nbsp;
                         </p>
+                        <p class="m-t-b-50">
+                            <br>&nbsp;
+                        </p>
                         @else
+                        <p class="m-t-b-50">
+                            <br>&nbsp;
+                        </p>
                         @endif
                         <p class="m-t-b-50">
                             <br>&nbsp;

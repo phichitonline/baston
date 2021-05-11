@@ -118,6 +118,8 @@ class CheckController extends Controller
      */
     public function destroy(Check $check)
     {
+        Buy::where('id', $check->buy_id)->update(['status' => NULL]);
+
         $check->delete();
         return redirect()->route('check.index')
                          ->with('success', 'ลบข้อมูลเรียบร้อยแล้ว');

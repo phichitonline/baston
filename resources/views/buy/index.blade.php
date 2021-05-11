@@ -88,8 +88,10 @@
                                             <a href="{{ route('buy.edit', $data->id) }}" class="dropdown-item">แก้ไข</a>
                                             <a href="{{ route('buy.show', $data->id) }}" class="dropdown-item">พิมพ์ขออนุมัติ</a>
                                             <a href="{{ route('check.create') }}/?bid={{ $data->id }}&bsubj={{ $data->buy_subject }}&bnum={{ $data->buy_number }}&bshop={{ $data->buy_shop }}&bdate={{ $data->buy_date }}&bbudget={{ $data->buy_budget }}" class="dropdown-item text-primary">ตรวจรับ</a>
+                                            @if (Auth::user()->name == "admin")
                                             <div class="dropdown-divider"></div>
                                             <button class="dropdown-item text-danger" onClick="return confirm('ยืนยันการลบรายการนี้');">ยกเลิก</button>
+                                            @endif
                                         </form>
                                     </div>
                                 </li>

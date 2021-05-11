@@ -599,7 +599,7 @@
                                 <span class="menu-tab-icon">
                                     <i data-feather="pie-chart"></i>
                                 </span>
-                                <span>หน้าหลัก</span>
+                                <span>Home</span>
                             </a>
                         </li>
                         <li>
@@ -607,10 +607,10 @@
                                 <span class="menu-tab-icon">
                                     <i data-feather="layers"></i>
                                 </span>
-                                <span>Home</span>
+                                <span>ผู้ใช้</span>
                             </a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="#" data-menu-target="#reports">
                                 <span class="menu-tab-icon">
                                     <i data-feather="mouse-pointer"></i>
@@ -625,7 +625,7 @@
                                 </span>
                                 <span>แบบฟอร์ม</span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="#" data-menu-target="#setting">
                                 <span class="menu-tab-icon">
@@ -641,7 +641,7 @@
                 <!-- Menu body -->
                 <div class="navigation-menu-body">
                     <ul id="dashboards">
-                        <li class="navigation-divider">หน้าหลัก</li>
+                        <li class="navigation-divider">Home</li>
                         <li>
                             <a @if(!request()->segment(1) || request()->segment(1) == 'dashboard') class="active"
                                @endif href="{{ route('dashboard') }}">
@@ -902,25 +902,29 @@
                         <li>
                             @guest
                             @else
+                            @if (Auth::user()->name == "admin")
                             <a @if(request()->segment(1) == 'setting') class="active"
                                 @endif href="{{ route('setting.index') }}">
                                <span class="nav-link-icon" data-feather="settings"></span>
                                 <span>ตั้งค่าระบบ</span>
                             </a>
+                            @endif
                             <a @if(request()->segment(1) == 'profile') class="active"
                                 @endif href="{{ route('profile.edit', Auth::user()->id) }}">
                                <span class="nav-link-icon" data-feather="user"></span>
                                 <span>ข้อมูลผู้ใช้</span>
                             </a>
-                            @endguest
                         </li>
+                        @if (Auth::user()->name == "admin")
                         <li>
                             <a @if(request()->segment(1) == 'director') class="active"
                                 @endif href="{{ route('director.index') }}">
-                               <span class="nav-link-icon" data-feather="users"></span>
+                                <span class="nav-link-icon" data-feather="users"></span>
                                 <span>เจ้าหน้าที่/กรรมการ</span>
                             </a>
                         </li>
+                        @endif
+                        @endguest
                     </ul>
                     <ul id="plugins">
                         <li class="navigation-divider">Plugins</li>
