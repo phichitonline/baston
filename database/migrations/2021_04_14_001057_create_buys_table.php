@@ -33,6 +33,7 @@ class CreateBuysTable extends Migration
             $table->string('buy_budgetcode');
             $table->string('buy_period');
             $table->string('buy_shop');
+            $table->string('buy_shopaddr');
             $table->string('buy_percheck1');
             $table->string('buy_percheck2');
             $table->string('buy_percheck3');

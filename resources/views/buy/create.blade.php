@@ -204,7 +204,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <label for="buy_perspec" class="col-sm-6 col-form-label">ประธานกรรมการ</label>
+                                    <label for="buy_perspec" class="col-sm-6 col-form-label">เป็นประธานกรรมการ</label>
                                 </div>
                                 <!-- form-group -->
                                 <div class="form-group row">
@@ -217,7 +217,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <label for="buy_perspec2" class="col-sm-6 col-form-label">กรรมการ</label>
+                                    <label for="buy_perspec2" class="col-sm-6 col-form-label">เป็นกรรมการ</label>
                                 </div>
                                 <!-- form-group -->
                                 <div class="form-group row">
@@ -230,7 +230,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <label for="buy_perspec3" class="col-sm-6 col-form-label">กรรมการ เป็นผู้กำหนดรายละเอียดการจ้าง/ซื้อ/เช่า*</label>
+                                    <label for="buy_perspec3" class="col-sm-6 col-form-label">เป็นกรรมการ ผู้กำหนดรายละเอียดการจ้าง/ซื้อ/เช่า*</label>
                                 </div>
                                 <!-- form-group -->
                                 <div class="form-group row">
@@ -278,6 +278,13 @@
                                         <div class="invalid-feedback">กรุณาระบุข้อมูล</div>
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label for="buy_shopaddr" class="col-sm-2 col-form-label text-right">ที่อยู่</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="buy_shopaddr" placeholder="" required>
+                                        <div class="invalid-feedback">กรุณาระบุข้อมูล</div>
+                                    </div>
+                                </div>
 
                                 <!-- form-group -->
                                 <div class="form-group row">
@@ -294,7 +301,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <label for="buy_percheck1" class="col-sm-6 col-form-label">ประธานกรรมการ</label>
+                                    <label for="buy_percheck1" class="col-sm-6 col-form-label">เป็นประธานกรรมการ</label>
                                 </div>
                                 <div class="form-group row">
                                     <label for="buy_percheck2" class="col-sm-2 col-form-label text-right">9.2</label>
@@ -306,7 +313,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <label for="buy_percheck2" class="col-sm-6 col-form-label">กรรมการ</label>
+                                    <label for="buy_percheck2" class="col-sm-6 col-form-label">เป็นกรรมการ</label>
                                 </div>
                                 <div class="form-group row">
                                     <label for="buy_percheck3" class="col-sm-2 col-form-label text-right">9.3</label>
@@ -318,11 +325,11 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <label for="buy_percheck3" class="col-sm-6 col-form-label">กรรมการ</label>
+                                    <label for="buy_percheck3" class="col-sm-6 col-form-label">เป็นกรรมการ</label>
                                 </div>
                                 <!-- form-group -->
                                 <div class="form-group wd-xs-300">
-                                    <label>เป็นผู้ตรวจรับพัสดุ (กรณีวงเงินไม่เกิน 100,000 บาท ผู้ตรวจรับพัสดุ 1 คน)
+                                    <label>ผู้ตรวจรับพัสดุ (กรณีวงเงินไม่เกิน 100,000 บาท ผู้ตรวจรับพัสดุ 1 คน)
                                         อำนาจและหน้าที่ ตรวจรับพัสดุ ให้ดำเนินการตามระเบียบกระทรวงการคลังฯ ข้อ 175
                                         โดยให้คณะกรรมการดำเนินการให้แล้วเสร็จภายใน 3 วันทำการ
                                         นับตั้งแต่วันที่ผู้ขายหรือผู้รับจ้างนำพัสดุมาส่งมอบให้กับสำนักงาน

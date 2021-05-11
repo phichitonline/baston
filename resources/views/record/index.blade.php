@@ -74,7 +74,7 @@
                                         รอดำเนินการ
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <form action="{{ route('check.destroy', $data->cid) }}" method="POST">
+                                        <form action="{{ route('record.destroy', $data->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <a href="{{ route('record.edit', $data->id) }}" class="dropdown-item">แก้ไข</a>

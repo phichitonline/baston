@@ -62,7 +62,7 @@
                         }
                       @endphp
                         <p class="m-t-b-20 lead">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             ใบตรวจรับพัสดุฉบับนี้ให้ไว้เพื่อแสดงว่า <u class="dotted"> {{ $data->buy_shop }} </u>
                             ซึ่งเป็นผู้<u class="dotted"> {{ $buy_type_name }}  {{ $data->buy_subject }} </u>
                             ตาม ใบสั่งซื้อ/ใบสั่งจ้าง เลขที่ <u class="dotted"> {{ $data->buy_number }} </u>
@@ -75,7 +75,7 @@
                             มีครบถ้วนถูกต้องเป็นไปตามเงื่อนไขใบสั่งซื้อ/ใบสั่งจ้าง ทุกประการ
                         </p>
                         <p class="m-t-20 m-b-50 lead">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             จึงออกใบตรวจรับฉบับนี้ให้ไว้เป็นหลักฐาน
                         </p>
 
@@ -85,7 +85,7 @@
                             </div>
                             <div class="col-md-6">
                                 <p class="m-t-30 m-b-10 lead">
-                                    ให้ไว้ ณ วันที่ {{ thaidate('j F Y',$data->check_checkdate) }}
+                                    ให้ไว้  ณ  วันที่  {{ thaidate('j F Y',$data->check_checkdate) }}
                                 </p>
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                                     ลงชื่อ
                                     <u class="dotted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>
                                     ผู้ตรวจรับพัสดุ</p>
-                                <p class="m-t-0 m-b-10 text-center lead">({{ $data->buy_auth }}) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                <p class="m-t-0 m-b-10 text-center lead">({{ $data->buy_auth }}) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                             </div>
                         </div>
 
