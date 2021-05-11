@@ -31,14 +31,14 @@
             <div class="card">
                 <div><br></div>
                 <div class="table-responsive">
-                    <table id="example1" class="table table-small">
+                    <table id="example1" class="table table-small table-hover">
                         <thead>
                         <tr>
                             <th>ID</th>
                             <th>วันที่อนุมัติ</th>
                             <th>เลขที่</th>
                             <th>เรื่อง</th>
-                            <th class="text-right">มูลค่า</th>
+                            <th class="text-right">มูลค่าตรวจรับ</th>
                             <th>วันที่ตรวจรับ</th>
                             <th class="text-center">สถานะ</th>
                         </tr>
@@ -47,11 +47,27 @@
 
                         @foreach ($check_list as $data)
                         <tr>
+                            @php
+                            if ($data->buy_type == 1) {
+                                $buy_type_name = "ซื้อ";
+                            } else if ($data->buy_type == 2) {
+                                $buy_type_name = "จ้าง";
+                            } else {
+                                $buy_type_name = "เช่า";
+                            }
+                            if ($data->buy_budgetuse > $data->buy_budget) {
+                                $budget_color = " text-danger";
+                            } else if ($data->buy_budgetuse < $data->buy_budget) {
+                                $budget_color = " text-success";
+                            } else {
+                                $budget_color = " ";
+                            }
+                            @endphp
                             <td>{{ $data->cid }}</td>
                             <td>{{ thaidate('j F Y',$data->buy_date) }}</td>
                             <td>{{ $data->buy_number }}</td>
-                            <td>{{ $data->buy_subject }}</td>
-                            <td class="text-right">{{ number_format($data->check_billtotal,2) }}</td>
+                            <td>{{ $buy_type_name }}{{ $data->buy_subject }}</td>
+                            <td class="text-right {{ $budget_color }}">{{ number_format($data->check_billtotal,2) }}</td>
                             <td>{{ thaidate('j F Y',$data->check_checkdate) }}</td>
 
                             <td>

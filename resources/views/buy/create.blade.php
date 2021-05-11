@@ -161,19 +161,19 @@
                                     <div data-repeater-item>
                                         <div class="row">
                                             <div class="col-md-4 col-sm-12 form-group">
-                                                <input type="text" class="form-control" name="item_name" id="item_name" placeholder="">
+                                                <input type="text" class="form-control" name="item_name" id="item_name" placeholder="" required>
                                             </div>
                                             <div class="col-md-2 col-sm-12 form-group">
-                                                <input type="text" class="form-control" name="item_unit" id="item_unit" placeholder="">
+                                                <input type="text" class="form-control" name="item_unit" id="item_unit" placeholder="" required>
                                             </div>
                                             <div class="col-md-2 col-sm-12 form-group">
-                                                <input type="number" step="any" class="form-control text-right" name="item_unit_price" id="item_unit_price" placeholder="">
+                                                <input type="number" step="any" class="form-control text-right" name="item_unit_price" id="item_unit_price" placeholder="" required>
                                             </div>
                                             <div class="col-md-1 col-sm-12 form-group">
                                                 <input type="text" class="form-control" name="item_std_price" id="item_std_price" placeholder="">
                                             </div>
                                             <div class="col-md-2 col-sm-12 form-group">
-                                                <input type="number" step="any" class="form-control text-right" name="item_qty" id="item_qty" placeholder="">
+                                                <input type="number" step="any" class="form-control text-right" name="item_qty" id="item_qty" placeholder="" required>
                                             </div>
                                             <div class="col-md-1 col-sm-12 form-group">
                                                 <button type="button" class="btn btn-danger" data-repeater-delete>
@@ -237,14 +237,14 @@
                                     <label for="buy_budget" class="col-sm-3 col-form-label">4. วงเงินที่จะซื้อหรือจ้าง จำนวน</label>
                                     <div class="col-sm-3">
                                         <input type="number" step="any" class="form-control text-right" name="buy_budget" value="{{ $buy_budget }}" required>
-                                        <div class="invalid-feedback">กรุณาระบุข้อมูล</div>
+                                        <div class="invalid-feedback">กรุณาระบุวงเงิน</div>
                                     </div>
                                     <label for="buy_budget2" class="col-sm-6 col-form-label">บาท&nbsp;&nbsp;&nbsp;&nbsp;รวมภาษีมูลค่าเพิ่มแล้ว จาก</label>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" name="buy_project" placeholder="" required>
-                                        <div class="invalid-feedback">กรุณาระบุข้อมูล</div>
+                                        <div class="invalid-feedback">กรุณาระบุชื่อโครงการ</div>
                                     </div>
                                     <label for="buy_budgetcode" class="col-sm-2 col-form-label text-right">รหัสเงินเลขที่</label>
                                     <div class="col-sm-4">
@@ -266,7 +266,7 @@
                                     <label for="buy_period" class="col-sm-3 col-form-label">7. ระยะเวลาดำเนินการ (วัน/เดือน)</label>
                                     <div class="col-sm-3">
                                         <input type="text" class="form-control" name="buy_period" placeholder="" required>
-                                        <div class="invalid-feedback">กรุณาระบุข้อมูล</div>
+                                        <div class="invalid-feedback">กรุณาระบุระยะเวลาในการดำเนินการ</div>
                                     </div>
                                     <label for="buy_period2" class="col-sm-6 col-form-label">(นับจากวันรับใบสั่งซื้อ/จ้าง/เช่า)</label>
                                 </div>
@@ -275,14 +275,14 @@
                                     <label for="buy_shop" class="col-sm-2 col-form-label">8. แหล่งจัดหา</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" name="buy_shop" placeholder="" required>
-                                        <div class="invalid-feedback">กรุณาระบุข้อมูล</div>
+                                        <div class="invalid-feedback">กรุณาระบุชื่อร้าน/ผู้รับจ้างหรือผู้ให้เช่า</div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="buy_shopaddr" class="col-sm-2 col-form-label text-right">ที่อยู่</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="buy_shopaddr" placeholder="" required>
-                                        <div class="invalid-feedback">กรุณาระบุข้อมูล</div>
+                                        <input type="text" class="form-control" name="buy_shopaddr" placeholder="">
+                                        <div class="invalid-feedback">กรุณาระบุที่อยู่ร้าน/ผู้รับจ้างหรือผู้ให้เช่า</div>
                                     </div>
                                 </div>
 

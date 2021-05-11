@@ -14,6 +14,30 @@
 
 @section('content')
 
+@foreach ($dash_data as $data)
+@php
+    $c_buy1 = $data->c_buy1;
+    $c_buy2 = $data->c_buy2;
+    $buy_stat1 = $data->c_buy1 * 100 / $data->c_buy;
+    $buy_stat2 = $data->c_buy2 * 100 / $data->c_buy;
+    $c_budget = $data->c_budget;
+    $c_budgetuse = $data->c_budgetuse;
+    $use_thismonth = $data->use_thismonth;
+    $budget_stat = $data->c_budgetuse * 100 / $data->c_budget;
+
+    if ($data->c_budget > $data->c_budgetuse) {
+        $budget_stat_color = "text-success";
+        $budget_stat_ud = "ti-angle-down";
+    } elseif ($data->c_budget < $data->c_budgetuse) {
+        $budget_stat_color = "text-danger";
+        $budget_stat_ud = "ti-angle-up";
+    } else {
+        $budget_stat_color = "text-primary";
+        $budget_stat_ud = "ti-angle-down";
+    }
+@endphp
+@endforeach
+
     <div class="page-header">
         <div class="page-title">
             <h3>ระบบงานจัดซื้อจัดจ้าง</h3>
@@ -32,11 +56,11 @@
                 <div class="card-body">
                     <h6 class="card-title d-flex justify-content-between">
                         งานจัดซื้อ
-                        <small class="text-muted">Last 30 days</small>
+                        <small class="text-muted">ปี {{ thaidate('Y') }}</small>
                     </h6>
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <h2 class="mb-3">84</h2>
+                            <h2 class="mb-3">{{ number_format($c_buy1,0) }}</h2>
                             <small class="text-success">
                                 <i class="ti-angle-up mr-1"></i>
                                 2.00%
@@ -55,11 +79,11 @@
                 <div class="card-body">
                     <h6 class="card-title d-flex justify-content-between">
                         งานจ้าง
-                        <small class="text-muted">Last 30 days</small>
+                        <small class="text-muted">ปี {{ thaidate('Y') }}</small>
                     </h6>
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <h2 class="mb-3">24</h2>
+                            <h2 class="mb-3">{{ number_format($c_buy2,0) }}</h2>
                             <small class="text-danger">
                                 <i class="ti-angle-down mr-1"></i>
                                 1.59%
@@ -76,15 +100,15 @@
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-title d-flex justify-content-between">
-                        สรุปงบประมาณ
-                        <small class="text-muted">Last 30 days</small>
+                        งบประมาณใช้ไป
+                        <small class="text-muted">ปี {{ thaidate('Y') }}</small>
                     </h6>
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <h2 class="mb-3">34,518</h2>
-                            <small class="text-success">
-                                <i class="ti-angle-up mr-1"></i>
-                                2.07%
+                            <h2 class="mb-3">{{ number_format($c_budgetuse,2) }}</h2>
+                            <small class="{{ $budget_stat_color }}">
+                                <i class="{{ $budget_stat_ud }} mr-1"></i>
+                                {{ number_format($budget_stat,2) }}%
                             </small>
                         </div>
                         <div class="icon-block icon-block-xl icon-block-floating bg-warning opacity-7">
@@ -104,7 +128,7 @@
                     <div class="d-flex justify-content-between">
                         <div>
                             <h6 class="card-title mb-3">สรุปงานจัดซื้อจัดจ้างรายเดือน</h6>
-                            <h1>34,518</h1>
+                            <h1>{{ number_format($c_budgetuse,2) }}</h1>
                         </div>
                         <div class="d-flex">
                             <div class="icon-block icon-block-floating bg-danger mr-2">
@@ -124,252 +148,26 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <h6 class="card-title mb-2">คำขอเดือนนี้</h6>
+                        <h6 class="card-title mb-2">คำขอปีนี้</h6>
                         <div>
                             <a href="#" class="btn btn-outline-light btn-sm btn-floating mr-2">
                                 <i class="fa fa-refresh"></i>
                             </a>
-                            {{-- <div class="dropdown">
-                                <a href="#" data-toggle="dropdown"
-                                   class="btn btn-outline-light btn-sm btn-floating"
-                                   aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </div> --}}
                         </div>
                     </div>
-                    {{-- <p class="small text-muted">Avarage total sales +25,5%</p> --}}
                     <div id="monthly-sales"></div>
                     <ul class="list-inline text-center">
                         <li class="list-inline-item">
                             <i class="fa fa-circle mr-1 text-success"></i> งานจัดซื้อ <br>
-                            <small class="text-muted">25,45%</small>
+                            <small class="text-muted">{{ number_format($buy_stat1,2) }}%</small>
                         </li>
                         <li class="list-inline-item">
                             <i class="fa fa-circle mr-1 text-primary"></i> งานจ้าง <br>
-                            <small class="text-muted">75,55%</small>
+                            <small class="text-muted">{{ number_format($buy_stat2,2) }}%</small>
                         </li>
                     </ul>
                 </div>
             </div>
-        </div>
-    </div>
-
-
-    <div class="card">
-        <div class="card-body">
-            <h6 class="card-title mb-0">รายการคำขอ</h6>
-        </div>
-        <div class="table-responsive">
-            <table id="recent-orders" class="table table-lg">
-                <thead>
-                <tr>
-                    <th>รหัส</th>
-                    <th>เรื่อง</th>
-                    <th>งบประมาณ(บาท)</th>
-                    <th>วันที่</th>
-                    <th>สถานะ</th>
-                    <th class="text-right"> </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <a href="{{ route('product-detail') }}" class="d-flex align-items-center">
-                            <span>2564-1</span>
-                        </a>
-                    </td>
-                    <td>จัดซื้อแบบพิมพ์งานอนามัยแม่และเด็ก</td>
-                    <td>23,245</td>
-                    <td>15 ม.ค.2564</td>
-                    <td>
-                        <span class="badge bg-secondary-bright text-secondary">On pre-order (not paid)</span>
-                    </td>
-                    <td class="text-right">
-                        <a href="#" class="btn btn-outline-primary btn-sm btn-floating" data-toggle="tooltip" title="แก้ไข">
-                            <i class="ti-pencil"></i>
-                        </a>
-                        <a href="#" class="btn btn-outline-danger btn-sm btn-floating ml-2" data-toggle="tooltip" title="ลบ">
-                            <i class="ti-trash"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="{{ route('product-detail') }}" class="d-flex align-items-center">
-                            <span>2564-1</span>
-                        </a>
-                    </td>
-                    <td>จัดซื้อแบบพิมพ์งานอนามัยแม่และเด็ก</td>
-                    <td>23,245</td>
-                    <td>15 ม.ค.2564</td>
-                    <td>
-                        <span class="badge bg-secondary-bright text-secondary">On pre-order (not paid)</span>
-                    </td>
-                    <td class="text-right">
-                        <a href="#" class="btn btn-outline-primary btn-sm btn-floating" data-toggle="tooltip" title="แก้ไข">
-                            <i class="ti-pencil"></i>
-                        </a>
-                        <a href="#" class="btn btn-outline-danger btn-sm btn-floating ml-2" data-toggle="tooltip" title="ลบ">
-                            <i class="ti-trash"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="{{ route('product-detail') }}" class="d-flex align-items-center">
-                            <span>2564-1</span>
-                        </a>
-                    </td>
-                    <td>จัดซื้อแบบพิมพ์งานอนามัยแม่และเด็ก</td>
-                    <td>23,245</td>
-                    <td>15 ม.ค.2564</td>
-                    <td>
-                        <span class="badge bg-secondary-bright text-secondary">On pre-order (not paid)</span>
-                    </td>
-                    <td class="text-right">
-                        <a href="#" class="btn btn-outline-primary btn-sm btn-floating" data-toggle="tooltip" title="แก้ไข">
-                            <i class="ti-pencil"></i>
-                        </a>
-                        <a href="#" class="btn btn-outline-danger btn-sm btn-floating ml-2" data-toggle="tooltip" title="ลบ">
-                            <i class="ti-trash"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="{{ route('product-detail') }}" class="d-flex align-items-center">
-                            <span>2564-1</span>
-                        </a>
-                    </td>
-                    <td>จัดซื้อแบบพิมพ์งานอนามัยแม่และเด็ก</td>
-                    <td>23,245</td>
-                    <td>15 ม.ค.2564</td>
-                    <td>
-                        <span class="badge bg-secondary-bright text-secondary">On pre-order (not paid)</span>
-                    </td>
-                    <td class="text-right">
-                        <a href="#" class="btn btn-outline-primary btn-sm btn-floating" data-toggle="tooltip" title="แก้ไข">
-                            <i class="ti-pencil"></i>
-                        </a>
-                        <a href="#" class="btn btn-outline-danger btn-sm btn-floating ml-2" data-toggle="tooltip" title="ลบ">
-                            <i class="ti-trash"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="{{ route('product-detail') }}" class="d-flex align-items-center">
-                            <span>2564-1</span>
-                        </a>
-                    </td>
-                    <td>จัดซื้อแบบพิมพ์งานอนามัยแม่และเด็ก</td>
-                    <td>23,245</td>
-                    <td>15 ม.ค.2564</td>
-                    <td>
-                        <span class="badge bg-secondary-bright text-secondary">On pre-order (not paid)</span>
-                    </td>
-                    <td class="text-right">
-                        <a href="#" class="btn btn-outline-primary btn-sm btn-floating" data-toggle="tooltip" title="แก้ไข">
-                            <i class="ti-pencil"></i>
-                        </a>
-                        <a href="#" class="btn btn-outline-danger btn-sm btn-floating ml-2" data-toggle="tooltip" title="ลบ">
-                            <i class="ti-trash"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="{{ route('product-detail') }}" class="d-flex align-items-center">
-                            <span>2564-1</span>
-                        </a>
-                    </td>
-                    <td>จัดซื้อแบบพิมพ์งานอนามัยแม่และเด็ก</td>
-                    <td>23,245</td>
-                    <td>15 ม.ค.2564</td>
-                    <td>
-                        <span class="badge bg-secondary-bright text-secondary">On pre-order (not paid)</span>
-                    </td>
-                    <td class="text-right">
-                        <a href="#" class="btn btn-outline-primary btn-sm btn-floating" data-toggle="tooltip" title="แก้ไข">
-                            <i class="ti-pencil"></i>
-                        </a>
-                        <a href="#" class="btn btn-outline-danger btn-sm btn-floating ml-2" data-toggle="tooltip" title="ลบ">
-                            <i class="ti-trash"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="{{ route('product-detail') }}" class="d-flex align-items-center">
-                            <span>2564-1</span>
-                        </a>
-                    </td>
-                    <td>จัดซื้อแบบพิมพ์งานอนามัยแม่และเด็ก</td>
-                    <td>23,245</td>
-                    <td>15 ม.ค.2564</td>
-                    <td>
-                        <span class="badge bg-secondary-bright text-secondary">On pre-order (not paid)</span>
-                    </td>
-                    <td class="text-right">
-                        <a href="#" class="btn btn-outline-primary btn-sm btn-floating" data-toggle="tooltip" title="แก้ไข">
-                            <i class="ti-pencil"></i>
-                        </a>
-                        <a href="#" class="btn btn-outline-danger btn-sm btn-floating ml-2" data-toggle="tooltip" title="ลบ">
-                            <i class="ti-trash"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="{{ route('product-detail') }}" class="d-flex align-items-center">
-                            <span>2564-1</span>
-                        </a>
-                    </td>
-                    <td>จัดซื้อแบบพิมพ์งานอนามัยแม่และเด็ก</td>
-                    <td>23,245</td>
-                    <td>15 ม.ค.2564</td>
-                    <td>
-                        <span class="badge bg-secondary-bright text-secondary">On pre-order (not paid)</span>
-                    </td>
-                    <td class="text-right">
-                        <a href="#" class="btn btn-outline-primary btn-sm btn-floating" data-toggle="tooltip" title="แก้ไข">
-                            <i class="ti-pencil"></i>
-                        </a>
-                        <a href="#" class="btn btn-outline-danger btn-sm btn-floating ml-2" data-toggle="tooltip" title="ลบ">
-                            <i class="ti-trash"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="{{ route('product-detail') }}" class="d-flex align-items-center">
-                            <span>2564-1</span>
-                        </a>
-                    </td>
-                    <td>จัดซื้อแบบพิมพ์งานอนามัยแม่และเด็ก</td>
-                    <td>23,245</td>
-                    <td>15 ม.ค.2564</td>
-                    <td>
-                        <span class="badge bg-secondary-bright text-secondary">On pre-order (not paid)</span>
-                    </td>
-                    <td class="text-right">
-                        <a href="#" class="btn btn-outline-primary btn-sm btn-floating" data-toggle="tooltip" title="แก้ไข">
-                            <i class="ti-pencil"></i>
-                        </a>
-                        <a href="#" class="btn btn-outline-danger btn-sm btn-floating ml-2" data-toggle="tooltip" title="ลบ">
-                            <i class="ti-trash"></i>
-                        </a>
-                    </td>
-                </tr>
-
-                </tbody>
-            </table>
         </div>
     </div>
 
@@ -378,27 +176,15 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-title d-flex justify-content-between">
-                        <h6 class="card-title">สัดส่วนแผนงานโครงการ</h6>
+                        <h6 class="card-title">แผนงานโครงการ</h6>
                         <div>
                             <a href="#" class="btn btn-outline-light btn-sm btn-floating mr-2">
                                 <i class="fa fa-refresh"></i>
                             </a>
-                            {{-- <div class="dropdown">
-                                <a href="#" data-toggle="dropdown"
-                                   class="btn btn-outline-light btn-sm btn-floating"
-                                   aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </div> --}}
                         </div>
                     </div>
                     <p>งบประมาณรวม</p>
-                    <h2 class="mb-4">469,453</h2>
+                    <h2 class="mb-4">500,000.00</h2>
                     <div class="progress mb-3" style="height: 10px">
                         <div class="progress-bar bg-secondary" style="width: 30%" role="progressbar"></div>
                         <div class="progress-bar bg-info" style="width: 12%" role="progressbar"></div>
@@ -451,7 +237,7 @@
                 <div class="card-body">
                     <div class="text-center">
                         <p>เบิกจ่ายเดือนนี้</p>
-                        <h2>158,000</h2>
+                        <h2>{{ number_format($use_thismonth,2) }}</h2>
                         <p>สรุปการเบิกจ่ายงบประมาณ รวมทุกแผนงานโครงการของสำนักงาน</p>
                         <div class="mt-4">
                             <a href="#" class="btn btn-info">ดูรายละเอียด</a>

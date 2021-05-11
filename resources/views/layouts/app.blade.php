@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style type="text/css">
+
         /* @media print {
             @page { margin: 0; }
             body { margin: 0.5cm; }
@@ -25,6 +26,14 @@
                 margin-top: 2cm;
             }
         } */
+
+        @media print {
+            font-family: verdana,arial,sans-serif;
+            font-size: 16px;
+            table, th, td {
+                border: 2px solid black !important;
+            }
+        }
 
         u.dotted {
             border-bottom: 2px dotted #000;
@@ -679,7 +688,7 @@
                                @endif href="{{ route('report') }}">
                                 <span class="nav-link-icon" data-feather="file"></span>
                                 <span>4.รายงานผล</span>
-                                <span class="badge badge-primary">{{ $count_check }}</span>
+                                <span class="badge badge-primary">{{ $count_record_total }}</span>
                             </a>
                         </li>
                         <li>

@@ -125,22 +125,31 @@ class BuyController extends Controller
     {
         $buyitem = Buyitem::where('rid', '=', $buy->rid)
         ->orderBy('item_no', 'asc')
-        ->skip(0)->take(13)
-        // ->limit(3)
+        ->skip(0)->take(4)
+        ->get();
+        $buyitem2 = Buyitem::where('rid', '=', $buy->rid)
+        ->orderBy('item_no', 'asc')
+        ->skip(4)->take(20)
         ->get();
         // $buysumprice = Buyitem::where('buy_id', '=', $buy->id)->sum('item_unit_price');
         $buysumprice1 = DB::table('buyitems')
         ->select(DB::raw('SUM((item_unit_price * item_qty)) as sumprice'))
         ->where('rid', '=', $buy->rid)
-        ->skip(0)->take(13)
-        // ->limit(3)
+        ->where('item_no', '<', 5)
         ->get();
-
-        $buyitem_count = Buyitem::where('rid', '=', $buy->rid)->count();
-
         foreach ($buysumprice1 as $data) {
             $buysumprice = $data->sumprice;
         }
+
+        $buysumprice22 = DB::table('buyitems')
+        ->select(DB::raw('SUM((item_unit_price * item_qty)) as sumprice'))
+        ->where('rid', '=', $buy->rid)
+        ->get();
+        foreach ($buysumprice22 as $data) {
+            $buysumprice2 = $data->sumprice;
+        }
+
+        $buyitemcount = Buyitem::where('rid', '=', $buy->rid)->count();
 
         $temp_budget = Record::where('id', '=', $buy->rid)->get();
         foreach ($temp_budget as $data) {
@@ -150,8 +159,10 @@ class BuyController extends Controller
         return view('buy.show', [
             'pagename' => "หน้าสำหรับพิมพ์",
             'buyitem' => $buyitem,
+            'buyitem2' => $buyitem2,
             'buysumprice' => $buysumprice,
-            'buyitem_count' => $buyitem_count,
+            'buysumprice2' => $buysumprice2,
+            'buyitemcount' => $buyitemcount,
             'r_budget' => $r_budget,
         ], compact('buy'));
     }

@@ -32,7 +32,7 @@
     @foreach ($check_list as $data)
 
                         <div class="text-center">
-                            <img src="{{ url('assets/media/image/logo/logo_nhso.png') }}" width="150" alt="logo">
+                            <img src="{{ url('assets/media/image/logo/logo_nhso.png') }}" width="220" alt="logo">
                             <h2 class="text-center m-t-20 m-b-15">ใบตรวจรับพัสดุ</h2>
                             <h4 class="text-center m-b-30">ตามระเบียบกระทรวงการคลังว่าด้วยการจัดซื้อจัดจ้างและการบริหารพัสดุภาครัฐ พ.ศ. 2560 ข้อ 175</h4>
                         </div>
@@ -68,13 +68,17 @@
                             ตาม ใบสั่งซื้อ/ใบสั่งจ้าง เลขที่ <u class="dotted"> {{ $data->buy_number }} </u>
                             ลงวันที่ <u class="dotted"> {{ thaidate('j F Y',$data->buy_date) }} </u>
                             ในวงเงินทั้งสิ้น <u class="dotted"> {{ number_format($data->buy_budget,2) }} ({{ baht_text($data->buy_budget) }})</u>
+                            @if ($data->check_billtotal == $data->buy_budget)
+                            @else
+                            จัดซื้อจริง <u class="dotted"> {{ number_format($data->check_billtotal,2) }} </u>
+                            @endif
                             รวมภาษีมูลค่าเพิ่มแล้ว ซึ่งผู้{{ $buy_type_name }} ได้ส่งมอบ <u class="dotted">{{ $data->buy_subject }} </u>
                             ตาม <u class="dotted">{{ $buy_type_name3 }} {{ $data->check_bill }} </u>
                             และผู้ตรวจรับพัสดุ ได้ตรวจรับงาน แล้วเมื่อวันที่ <u class="dotted"> {{ thaidate('j F Y',$data->check_checkdate) }} </u>
                             มีความเห็นว่า <u class="dotted">{{ $buy_type_name4 }} {{ $data->buy_subject }} </u>
                             มีครบถ้วนถูกต้องเป็นไปตามเงื่อนไขใบสั่งซื้อ/ใบสั่งจ้าง ทุกประการ
                         </p>
-                        <p class="m-t-20 m-b-50 lead">
+                        <p class="m-t-20 m-b-0 lead">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             จึงออกใบตรวจรับฉบับนี้ให้ไว้เป็นหลักฐาน
                         </p>
@@ -84,7 +88,7 @@
                                 <p> </p>
                             </div>
                             <div class="col-md-6">
-                                <p class="m-t-30 m-b-10 lead">
+                                <p class="m-t-30 m-b-30 lead">
                                     ให้ไว้  ณ  วันที่  {{ thaidate('j F Y',$data->check_checkdate) }}
                                 </p>
                             </div>
@@ -95,15 +99,32 @@
                                 <p> </p>
                             </div>
                             <div class="col-md-6">
-                                <p class="m-t-50 m-b-0 text-center lead">
+                                <p class="m-t-30 m-b-0 text-center lead">
                                     ลงชื่อ
                                     <u class="dotted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>
                                     ผู้ตรวจรับพัสดุ</p>
-                                <p class="m-t-0 m-b-10 text-center lead">({{ $data->buy_auth }}) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                <p class="m-t-0 m-b-10 text-center lead">({{ $data->check_checker }}) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                             </div>
                         </div>
 
 
+
+                        <p class="m-t-b-50">
+                            <br>&nbsp;
+                        </p>
+                        <p class="m-t-b-50">
+                            <br>&nbsp;
+                        </p>
+                        <p class="m-t-b-50">
+                            <br>&nbsp;
+                        </p>
+                        <p class="m-t-b-50">
+                            <br>&nbsp;
+                        </p>
+                        <div class="row">
+                            <div class="col-md-6"><br>FM-401 01-042</div>
+                            <div class="col-md-6 text-right">ฉบับที่ 00 <br>วันที่ 3 กุมภาพันธ์ 2563</div>
+                        </div>
                     </div>
 
                 </div>

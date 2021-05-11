@@ -63,7 +63,7 @@ class CheckController extends Controller
     {
         Check::create($request->all());
 
-        Buy::where('id', $request->buy_id)->update(['status' => 1]);
+        Buy::where('id', $request->buy_id)->update(['status' => 1,'buy_budgetuse' => $request->check_billtotal]);
 
         return redirect()->route('check.index')
                          ->with('success', 'บันทึกข้อมูลเรียบร้อยแล้ว');

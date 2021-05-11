@@ -121,13 +121,13 @@ $(function () {
 
     function monthlySales() {
         var options = {
-            series: [244, 355],
+            series: [10, 15],
             chart: {
                 type: 'donut',
                 height: 320,
                 fontFamily: chartFontStyle,
             },
-            labels: ['Credit Card', 'Bank Card'],
+            labels: ['งานจ้าง','งานจัดซื้อ'],
             colors: [colors.primary, colors.success],
             track: {
                 background: "#cccccc"
@@ -146,7 +146,7 @@ $(function () {
                             show: true,
                             value: {
                                 formatter: function (val) {
-                                    return '$' + val;
+                                    return val + ' คำขอ';
                                 }
                             }
                         }
@@ -157,7 +157,7 @@ $(function () {
                 shared: false,
                 y: {
                     formatter: function (val) {
-                        return '$' + val;
+                        return val + ' คำขอ';
                     }
                 }
             },

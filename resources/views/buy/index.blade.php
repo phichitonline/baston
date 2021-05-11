@@ -31,7 +31,7 @@
             <div class="card">
                 <div><br></div>
                 <div class="table-responsive">
-                    <table id="example1" class="table table-small">
+                    <table id="example1" class="table table-small table-hover">
                         <thead>
                         <tr>
                             <th>ID</th>
@@ -39,7 +39,7 @@
                             <th>เลขที่</th>
                             <th>เรื่อง</th>
                             <th class="text-right">งบประมาณ</th>
-                            <th class="text-right">จำนวนเงินใช้ไป</th>
+                            <th>ผู้ตรวจรับ</th>
                             <th class="text-center">สถานะ</th>
                         </tr>
                         </thead>
@@ -55,21 +55,13 @@
                             } else {
                                 $buy_type_name = "เช่า";
                             }
-                            if ($data->buy_budgetuse > $data->buy_budget) {
-                                $budget_color = " text-danger";
-                            } else if ($data->buy_budgetuse < $data->buy_budget) {
-                                $budget_color = " text-success";
-                            } else {
-                                $budget_color = " ";
-                            }
-
                             @endphp
                             <td>{{ $data->id }}</td>
                             <td>{{ thaidate('j F Y',$data->buy_date) }}</td>
                             <td>{{ $data->buy_number }}</td>
                             <td>{{ $buy_type_name }}{{ $data->buy_subject }}</td>
                             <td class="text-right">{{ number_format($data->buy_budget,2) }}</td>
-                            <td class="text-right {{ $budget_color }}">{{ number_format($data->buy_budgetuse,2) }}</td>
+                            <td>{{ $data->buy_percheck1 }}</td>
 
                             <td>
                                 @if ($data->status == 1)

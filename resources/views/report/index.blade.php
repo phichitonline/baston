@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('bodyClass', 'stretch-layout small-navigation')
+
 @section('head')
     <!-- DataTable -->
     <link rel="stylesheet" href="{{ url('vendors/dataTable/datatables.min.css') }}" type="text/css">
@@ -34,10 +36,12 @@
                     <table id="example1" class="table table-small">
                         <thead>
                         <tr>
-                            <th>วันที่อนุมัติ</th>
                             <th>เลขที่</th>
+                            <th>วันที่ขออนุมัติ</th>
                             <th>เรื่อง</th>
-                            <th class="text-right">มูลค่า</th>
+                            <th>ผู้ขอ</th>
+                            <th class="text-right">งบประมาณ</th>
+                            <th class="text-right">มูลค่าใช้ไป</th>
                             <th>วันที่ตรวจรับ</th>
                             <th class="text-center">สถานะ</th>
                         </tr>
@@ -46,42 +50,65 @@
 
                         @foreach ($check_list as $data)
                         <tr>
-                            <td>{{ thaidate('j F Y',$data->buy_date) }}</td>
-                            <td>{{ $data->buy_number }}</td>
-                            <td>{{ $data->buy_subject }}</td>
-                            <td class="text-right">{{ number_format($data->check_billtotal,2) }}</td>
-                            <td>{{ thaidate('j F Y',$data->check_checkdate) }}</td>
+                            @php
+                            if ($data->r_type == 1) {
+                                $buy_type_name = "ซื้อ";
+                            } else if ($data->r_type == 2) {
+                                $buy_type_name = "จ้าง";
+                            } else {
+                                $buy_type_name = "เช่า";
+                            }
+                            if ($data->buy_budgetuse > $data->r_budget) {
+                                $budget_color = " text-danger";
+                            } else if ($data->buy_budgetuse < $data->r_budget) {
+                                $budget_color = " text-success";
+                            } else {
+                                $budget_color = " ";
+                            }
+                            @endphp
+                            <td>{{ $data->r_number }}</td>
+                            <td>{{ thaidate('j F Y',$data->r_date) }}</td>
+                            <td>{{ $buy_type_name }}{{ $data->r_subject }}</td>
+                            <td>{{ $data->buy_request }}</td>
+                            <td class="text-right">{{ number_format($data->r_budget,2) }}</td>
+                            <td class="text-right {{ $budget_color }}">
+                                @if (isset($data->check_billtotal))
+                                    {{ number_format($data->check_billtotal,2) }}
+                                @endif
+                            </td>
+                            <td>
+                                @if (isset($data->check_checkdate))
+                                    {{ thaidate('j F Y',$data->check_checkdate) }}
+                                @endif
+                            </td>
 
                             <td>
                                 @if ($data->status == 1)
-                                    {{-- <a class="badge bg-success-bright text-success">
-                                        ตรวจรับแล้ว
-                                    </a> --}}
                                     <li class="nav-item dropdown">
                                         <a href="#" class="badge bg-success-bright text-success nav-link dropdown-toggle" data-toggle="dropdown">
                                             ตรวจรับแล้ว
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
+                                            <a href="{{ route('buy.show', $data->id) }}" class="dropdown-item">พิมพ์ใบขออนุมัติ</a>
                                             <a href="{{ route('check.show', $data->id) }}" class="dropdown-item">พิมพ์ใบตรวจรับ</a>
+                                            <a href="#" class="dropdown-item">พิมพ์รายงานผล</a>
+                                            <a href="#" class="dropdown-item">พิมพ์ใบเบิก</a>
+                                        </div>
+                                    </li>
+                                @elseif ($data->b_id == NULL)
+                                    <li class="nav-item dropdown">
+                                        <a href="#" class="badge bg-danger nav-link dropdown-toggle" data-toggle="dropdown">รอดำเนินการ</a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a href="{{ route('record.index') }}" class="dropdown-item">ไปหน้าบันทึกขอ</a>
                                         </div>
                                     </li>
                                 @else
-                                <li class="nav-item dropdown">
-                                    <a href="#" class="badge bg-danger-bright text-danger nav-link dropdown-toggle" data-toggle="dropdown">
-                                        รอตรวจรับ
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <form action="{{ route('check.destroy', $data->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <a href="{{ route('buy.edit', $data->id) }}" class="dropdown-item">แก้ไข</a>
-                                            <a href="{{ route('buy.show', $data->id) }}" class="dropdown-item">พิมพ์ขออนุมัติ</a>
-                                            <a href="{{ route('check.create') }}/?bid=1" class="dropdown-item text-primary">ตรวจรับ</a>
-                                            {{-- <div class="dropdown-divider"></div> --}}
-                                            {{-- <button class="dropdown-item text-danger" onClick="return confirm('ยืนยันการลบรายการนี้');">ยกเลิก</button> --}}
-                                        </form>
-                                    </div>
-                                </li>
+                                    <li class="nav-item dropdown">
+                                        <a href="#" class="badge bg-warning nav-link dropdown-toggle" data-toggle="dropdown">ยังไม่ได้ตรวจรับ</a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a href="{{ route('buy.index') }}" class="dropdown-item">ไปหน้าแบบขออนุมัติ</a>
+                                        </div>
+                                    </li>
                                 @endif
 
                             </td>

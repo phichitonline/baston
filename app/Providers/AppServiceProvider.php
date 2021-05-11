@@ -32,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('count_record', Record::where('buy_status', NULL)->count());
             $view->with('count_buy', Buy::where('status', NULL)->count());
             $view->with('count_check', Check::count());
+            $view->with('count_record_total', Record::count());
         });
     }
 }

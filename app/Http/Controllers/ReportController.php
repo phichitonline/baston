@@ -16,10 +16,13 @@ class ReportController extends Controller
     public function index()
     {
         $check_list = DB::connection('mysql')->select('
-            SELECT c.id AS cid,c.*,b.* FROM checks c LEFT JOIN buys b ON c.buy_id = b.id WHERE b.`status` = 1
+            SELECT r.*,r.buy_date AS r_date,r.buy_number AS r_number,r.buy_budget AS r_budget,r.buy_type AS r_type,r.buy_subject AS r_subject,r.id AS r_id,b.*,b.id AS b_id,c.id AS c_id,c.*
+            FROM records r
+            LEFT JOIN buys b ON r.id = b.rid
+            LEFT JOIN checks c ON c.buy_id = b.id
             ');
 
-        return view('check.index', [
+        return view('report.index', [
             'pagename' => "รายงานผลการจัดซื้อ/จัดจ้าง",
             'check_list' => $check_list,
         ]);

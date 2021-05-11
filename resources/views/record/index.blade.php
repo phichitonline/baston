@@ -31,7 +31,7 @@
             <div class="card">
                 <div><br></div>
                 <div class="table-responsive">
-                    <table id="example1" class="table table-small">
+                    <table id="example1" class="table table-small table-hover">
                         <thead>
                         <tr>
                             <th>ID</th>
@@ -56,7 +56,7 @@
                                 $buy_type_name = "เช่า";
                             }
                             @endphp
-                            <td>{{ $data->cid }}</td>
+                            <td>{{ $data->id }}</td>
                             <td>{{ thaidate('j F Y',$data->buy_date) }}</td>
                             <td>{{ $data->buy_number }}</td>
                             <td>{{ $buy_type_name }}{{ $data->buy_subject }}</td>
